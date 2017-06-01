@@ -3,18 +3,21 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { HomeModule } from './home/home.module';
+import { ListarDiaristaModule } from './listar-diarista/listar-diarista.module';
+
 import { AppComponent } from './app.component';
-import { ListarDiaristaComponent } from './listar-diarista/listar-diarista.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListarDiaristaComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ListarDiaristaModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

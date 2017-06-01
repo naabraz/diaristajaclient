@@ -5,8 +5,7 @@ import { ListarDiaristaService } from './listar-diarista.service';
 @Component({
   selector: 'listar-diarista',
   templateUrl: './listar-diarista.component.html',
-  styleUrls: ['./listar-diarista.component.css'],
-  providers: [ListarDiaristaService]
+  styleUrls: ['./listar-diarista.component.css']
 })
 export class ListarDiaristaComponent implements OnInit {
 

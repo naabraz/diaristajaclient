@@ -1,5 +1,6 @@
-import { iMap } from './../common/imap.interface';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { FormControl } from "@angular/forms";
+import { MapsAPILoader } from 'angular2-google-maps/core';
 
 @Component({
   selector: 'home',

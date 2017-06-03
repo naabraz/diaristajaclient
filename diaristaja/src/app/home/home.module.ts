@@ -4,9 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { HomeComponent } from './home.component';
-import { MapComponent } from './map/map.component';
 
-import { MapModule } from './map/map.module';
 
 @NgModule({
   declarations: [
@@ -15,8 +13,7 @@ import { MapModule } from './map/map.module';
   imports: [
     BrowserModule,
     FormsModule,
-    CommonModule,
-    MapModule
+    CommonModule
   ],
   providers: [],
   bootstrap: [],

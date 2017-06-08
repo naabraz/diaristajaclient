@@ -57,7 +57,7 @@ export class MapComponent implements OnInit {
       () => console.log('Diaristas-Master -> Get Diaristas Complete ==> :1', this.diaristas));
   }
 
-  populaMapa(){
+  private populaMapa() {
     for (let idxDiarista = 0; idxDiarista < this.diaristas.length; idxDiarista++) {
       this.diaristasLocalizacao.push({ "latitude": Number(this.diaristas[idxDiarista].endereco.latitude), "longitude": Number(this.diaristas[idxDiarista].endereco.longitude) });
     }

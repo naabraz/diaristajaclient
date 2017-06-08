@@ -9,7 +9,6 @@ import { FooterComponent } from './common/footer/footer.component';
 
 import { MapModule } from './common/map/map.module';
 import { HomeModule } from './home/home.module';
-import { ListarDiaristaModule } from './listar-diarista/listar-diarista.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { ListarDiaristaModule } from './listar-diarista/listar-diarista.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    ListarDiaristaModule,
     HomeModule,
     MapModule
   ],

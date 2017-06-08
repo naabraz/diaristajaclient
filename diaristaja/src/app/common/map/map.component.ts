@@ -1,9 +1,13 @@
+import { Http } from '@angular/http';
+import { MapService, DiaristaRetrieveListType } from './map.service';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MapsAPILoader } from 'angular2-google-maps/core';
 import { FormControl } from "@angular/forms";
 
-import { iMap } from './../../common/base/imap.interface';
-import {} from '@types/googlemaps'; 
+import { IDiarista } from './../base/idiarista.interface';
+import { IMap } from './../../common/base/imap.interface';
+
+import { } from '@types/googlemaps';
 
 @Component({
   selector: 'map',
@@ -11,37 +15,55 @@ import {} from '@types/googlemaps';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-
-  arrMap: iMap[] = [];
-
+  
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
 
+  diaristas: IDiarista[];
+  diaristasLocalizacao: IMap [] = [];
+  
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
   constructor(
+    private http: Http,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
-  ) { }
-
+    private ngZone: NgZone) { }
 
   ngOnInit() {
+    this.getListaDiaristas();
+
+    this.setMapConfig();
+    //create search FormControl
+    this.searchControl = new FormControl();
+    //set current position
+    this.setCurrentPosition();
+    //load Places Autocomplete
+    this.loadPlaces();
+  }
+
+  private setMapConfig() {
     this.zoom = 16;
     this.latitude = -23.445658;
     this.longitude = -46.735411;
+  }
 
-    //create search FormControl
-    this.searchControl = new FormControl();
+  private getListaDiaristas() {
+    let mapService = new MapService(this.http);
+    mapService.getDiaristas().subscribe((data: DiaristaRetrieveListType) => { this.diaristas = <IDiarista[]>data.resultList, this.populaMapa() },
+      error => console.log(error),
+      () => console.log('Diaristas-Master -> Get Diaristas Complete ==> :1', this.diaristas));
+  }
 
-    this.populaLocais();
+  populaMapa(){
+    for (let idxDiarista = 0; idxDiarista < this.diaristas.length; idxDiarista++) {
+      this.diaristasLocalizacao.push({ "latitude": Number(this.diaristas[idxDiarista].endereco.latitude), "longitude": Number(this.diaristas[idxDiarista].endereco.longitude) });
+    }
+  }
 
-    //set current position
-    this.setCurrentPosition();
-
-    //load Places Autocomplete
+  private loadPlaces() {
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
@@ -63,7 +85,6 @@ export class MapComponent implements OnInit {
         });
       });
     });
-
   }
 
   private setCurrentPosition() {
@@ -74,14 +95,6 @@ export class MapComponent implements OnInit {
         this.zoom = 16;
       });
     }
-  }
-
-  private populaLocais() {
-    this.arrMap.push({ lat: -23.445471, lng: -46.735454 })
-    this.arrMap.push({ lat: -23.446916, lng: -46.735552 })
-    this.arrMap.push({ lat: -23.445590, lng: -46.736602 })
-    this.arrMap.push({ lat: -23.527837, lng: -46.692308 })
-    this.arrMap.push({ lat: -23.527985, lng: -46.691890 })
   }
 
 }

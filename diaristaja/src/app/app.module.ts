@@ -11,12 +11,14 @@ import { HomeModule } from './home/home.module';
 import { FiltroModule } from './filtro/filtro.module';
 import { FiltroResultadoModule } from './filtro-resultado/filtro-resultado.module';
 import { routing } from './app.routes';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

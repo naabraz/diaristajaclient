@@ -1,1 +1,170 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    padding: 0 0 0 0; 
+}
+h2{
+ margin-top: 45px !important;
+
+}
+.navbar-inverse{
+    background: #4fa2be !important;
+    border: none;
+}
+.navbar-fixed-top{
+    top: 0;
+    border-width: 0 0 1px;
+    float: left;
+    min-height: 44px;
+}
+.navbar-fixed-top .nav{
+    padding: 0 !important;
+}
+.navbar-inverse .navbar-nav>li>a{
+    color: #fff;
+}
+.btn-primary{
+    background: #4fa2be;
+    border: none;
+}
+.btn-primary:hover{
+    background: #048dac
+}
+
+.navbar-fixed-top .nav {
+    padding: 15px 0;
+}
+.iconLogin{
+    color: #fff;
+    padding: 8px;
+    float: right;
+}
+.iconLogoff{
+    color: #fff;
+    padding:  15px 0 0 7px;
+    float: right;
+}
+
+.divLogo{
+    float: left;
+    width: 100%;
+    text-align: center;
+    clear: both;
+    padding-bottom: 20px;
+}
+.colunas{
+    text-align: center;
+}
+.icones{
+    margin:0 auto;
+    float: none;
+    display: initial !important;
+    padding-bottom: 10px;
+}
+.divLogin{
+    padding: 20px;
+    margin-top: 20px;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #d8dee2;
+    border-radius: 0 0 3px 3px;
+}
+.divLogin label{
+    float: left;
+    width: 100%;
+}
+.divLogin .btnLogin{
+    margin-top: 10px;
+}
+.divLogin .btnDiarista{
+    background: url(assets/images/iconFaxpeq.png) no-repeat left 3px #048dac;
+    margin-top: 10px;
+    height: 88px;
+    padding: 27px 0 0 20px;
+    font-size: 26px;
+}
+.divLogin .btnCliente{
+    background: url(assets/images/iconClientepeq.png) no-repeat 8px -5px #08657a;
+    margin-top: 10px;
+    height: 83px;
+    padding: 18px 0 0 17px;
+    font-size: 20px;
+}
+.divLogin input{
+    margin:10px 0 0 0;
+}
+
+.divFiltro{
+    padding: 20px;
+    margin-top: 20px;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #d8dee2;
+    border-radius: 0 0 3px 3px;
+}
+.divFiltro > div{
+    margin:10px 0 10px 0; 
+}
+.divFiltro label{
+    display: initial;
+    max-width: auto;
+    margin-top: 10px;
+    float: left;
+}
+.mapaGoogle{
+    float: left;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    margin-top: -140px;
+}
+.mapaGoogle iframe{
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+.divBusca{
+    position: relative;
+    z-index: 1;
+}
+
+footer {
+    padding: 30px 0;
+}
+
+.footerBusca {
+    padding: 30px 0;
+    float: left;
+    clear: both;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 100%;
+    background: #fff;
+}
+
+@media(min-width:768px) {
+    .navbar-fixed-top .navbar-brand {
+        padding: 15px 0;
+    }
+}
+@media(max-width:768px) {
+        h1{
+            font-size: 26px;
+        }
+        .divLogin .btnDiarista{
+        background: #048dac;
+        margin-top: 10px;
+        height: 83px;
+        padding: 27px 0 0 10px;
+        font-size: 20px;
+        width: 45%;
+    }
+    .divLogin .btnCliente{
+        background: #08657a;
+        margin-top: 10px;
+        height: 83px;
+        padding: 18px 0 0 10px;
+        font-size: 20px;
+        width: 45%;
+        margin-left: 3%;
+    }
+}

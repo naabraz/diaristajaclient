@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { FiltroComponent } from './filtro/filtro.component';
+import { FiltroResultadoComponent } from './filtro-resultado/filtro-resultado.component';
 
 const APP_ROUTES: Routes = [
-    { path: 'filtro', component: FiltroComponent },
-    { path: '', component: HomeComponent }
+    { path: 'diarista/filtro', component: FiltroComponent },
+    { path: 'diarista/filtro-resultado', component: FiltroResultadoComponent },
+    { path: 'diarista', component: HomeComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

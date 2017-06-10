@@ -13,24 +13,24 @@
 
             <div class="col-md-6">
               Data
-              <input class="form-control" type="date" placeholder="DD/MM/AAAA">
+              <input class="form-control" type="date" [(ngModel)]="data" name="data" placeholder="DD/MM/AAAA">
             </div>
             <div class="col-md-6">
               Metragem
-              <input class="form-control" type="text" placeholder="60 m2">
+              <input class="form-control" type="text" [(ngModel)]="metragem" name="metragem" placeholder="60 m2">
             </div>
 
             <div class="col-md-6">
               CEP
-              <input class="form-control" type="text" placeholder="01046-010">
+              <input class="form-control" type="text" [(ngModel)]="cep" name="cep" placeholder="01046-010">
             </div>
             <div class="col-md-6">
               Numero
-              <input class="form-control" type="text" placeholder="200">
+              <input class="form-control" type="text" [(ngModel)]="numero" name="numero" placeholder="200">
             </div>
             <div class="col-md-12">
               Endereço
-              <input id="endereco" class="form-control" placeholder="Pesquise diaristas por endereço" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search [formControl]="searchControl">
+              <input id="endereco" class="form-control" [(ngModel)]="endereco" name="endereco" placeholder="Pesquise diaristas por endereço" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search [formControl]="searchControl">
             </div>
             <div class="col-md-12">
               <button class="btn btn-danger" type="reset">Limpar</button>

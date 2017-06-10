@@ -1,5 +1,6 @@
+import { IFiltro } from './../common/base/ifiltro.interface';
 import { MapComponent } from './../common/map/map.component';
-import { Component, OnInit, NgZone, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, NgZone, ElementRef, ViewChild, Input, Output } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormControl } from '@angular/forms';
 
@@ -14,8 +15,14 @@ export class FiltroComponent implements OnInit {
 
   public latitude: number;
   public longitude: number;
+
+  data: Date;
+  metragem: number;
+  cep: number;
+  numero: number;
+  endereco: string;
+
   public searchControl: FormControl;
-  public mapComponent: MapComponent;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;

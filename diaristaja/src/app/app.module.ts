@@ -9,6 +9,7 @@ import { FooterComponent } from './common/footer/footer.component';
 
 import { HomeModule } from './home/home.module';
 import { FiltroModule } from './filtro/filtro.module';
+import { FiltroResultadoModule } from './filtro-resultado/filtro-resultado.module';
 import { routing } from './app.routes';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { routing } from './app.routes';
     HttpModule,
     HomeModule,
     FiltroModule,
+    FiltroResultadoModule,
     routing
   ],
   providers: [],

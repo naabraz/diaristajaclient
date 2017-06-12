@@ -10,6 +10,7 @@ import { FooterComponent } from './common/footer/footer.component';
 import { HomeModule } from './home/home.module';
 import { FiltroModule } from './filtro/filtro.module';
 import { FiltroResultadoModule } from './filtro-resultado/filtro-resultado.module';
+import { DiaristaCadastroModule } from './diarista-cadastro/diarista-cadastro.modules';
 import { routing } from './app.routes';
 import { LoginComponent } from './login/login.component';
 
@@ -27,6 +28,7 @@ import { LoginComponent } from './login/login.component';
     HomeModule,
     FiltroModule,
     FiltroResultadoModule,
+    DiaristaCadastroModule,
     routing
   ],
   providers: [],

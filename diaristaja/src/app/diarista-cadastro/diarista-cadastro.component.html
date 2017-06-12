@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="row">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Formulário de cadastro - Diarista</h1>
+        <p>Os campso com (*) são obrigatórios:</p>
+
+        <form (ngSubmit)="saveDiarista()">
+          <div class="form-horizontal row col-md-12 divFiltro">
+            <fieldset>
+              <legend>Dados de Login:</legend>
+
+              <div class="col-md-12">
+                <label>Email*</label>
+                <input class="form-control" type="text" name="email" [(ngModel)]="diarista.email">
+              </div>
+              <div class="col-md-6">
+                <label>Senha*</label>
+                <input class="form-control" type="password" name="senha" [(ngModel)]="diarista.senha">
+              </div>
+              <div class="col-md-6">
+                <label>Confirme a senha*</label>
+                <input class="form-control" type="password" name="emconfirmesenha" [(ngModel)]="confirmaSenha">
+              </div>
+            </fieldset>
+
+            <fieldset class="m-t-30">
+              <legend>Dados pessoais:</legend>
+
+              <div class="col-md-6">
+                <label>Nome*</label>
+                <input class="form-control" type="text" name="nome" [(ngModel)]="diarista.nome">
+              </div>
+              <div class="col-md-6">
+                <label>Sobrenome*</label>
+                <input class="form-control" type="text" name="sobrenome" [(ngModel)]="diarista.sobrenome">
+              </div>
+              <div class="col-md-6">
+                <label>CPF*</label>
+                <input class="form-control" type="text" name="documento" [(ngModel)]="diarista.documento">
+              </div>
+              <div class="col-md-6">
+                <label>Data Nascimento*</label>
+                <input class="form-control" type="text" placeholder="" [(ngModel)]="diarista.dataNascimento" name="dataNascimento" onfocus="(this.type='date')">
+              </div>
+              <div class="col-md-2">
+                <label>DDD*</label>
+                <input class="form-control" type="text" name="ddd1" [(ngModel)]="diarista.ddd1">
+              </div>
+              <div class="col-md-10">
+                <label>Telefone*</label>
+                <input class="form-control" type="text" name="telefone1" [(ngModel)]="diarista.telefone1">
+              </div>
+              <div class="col-md-2">
+                <label>DDD</label>
+                <input class="form-control" type="text" name="ddd2" [(ngModel)]="diarista.ddd2">
+              </div>
+
+              <div class="col-md-10">
+                <label>Telefone</label>
+                <input class="form-control" type="text" name="telefone2" [(ngModel)]="diarista.telefone2">
+              </div>
+            </fieldset>
+
+            <fieldset class="m-t-30">
+              <legend>Endereço:</legend>
+              <div class="col-md-12">
+                <input id="endereco2" class="form-control" name="endereco2" placeholder="Digite seu endereço" autocorrect="off" autocapitalize="off"
+                  spellcheck="off" type="text" #search [formControl]="searchControl">
+              </div>
+
+              <div class="col-md-9">
+                <label>Endereço</label>
+                <input class="form-control" type="text" name="endereco" [(ngModel)]="diarista.endereco.endereco">
+              </div>
+              <div class="col-md-3">
+                <label>Número</label>
+                <input class="form-control" type="text" name="numero" [(ngModel)]="diarista.endereco.numero">
+              </div>
+              <div class="col-md-6">
+                <label>Referência</label>
+                <input class="form-control" type="text" name="referencia" [(ngModel)]="diarista.endereco.referencia">
+              </div>
+              <div class="col-md-6">
+                <label>Cep</label>
+                <input class="form-control" type="text" name="cep" [(ngModel)]="diarista.endereco.cep">
+              </div>
+
+              <div class="col-md-6">
+                <label>Estado</label>
+                <input class="form-control" type="text" name="estado" [(ngModel)]="diarista.endereco.estado">
+              </div>
+
+              <div class="col-md-6">
+                <label>Cidade</label>
+                <input class="form-control" type="text" name="cidade" [(ngModel)]="diarista.endereco.cidade">
+              </div>
+
+              <div class="col-md-6">
+                <label>Latitude</label>
+                <input class="form-control" type="text" name="latitude" [(ngModel)]="diarista.endereco.latitude">
+              </div>
+
+              <div class="col-md-6">
+                <label>Longitude</label>
+                <input class="form-control" type="text" name="longitude" [(ngModel)]="diarista.endereco.longitude">
+              </div>
+
+            </fieldset>
+            <div class="col-md-12">
+              <button class="btn btn-success btn-lg pull-right" type="submit">Salvar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

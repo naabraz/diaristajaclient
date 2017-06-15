@@ -11,6 +11,8 @@ import { HomeModule } from './home/home.module';
 import { FiltroModule } from './filtro/filtro.module';
 import { FiltroResultadoModule } from './filtro-resultado/filtro-resultado.module';
 import { DiaristaCadastroModule } from './diarista-cadastro/diarista-cadastro.modules';
+import { DiaristaDetalheModule } from './diarista-detalhe/diarista-detalhe.module';
+
 import { routing } from './app.routes';
 import { LoginComponent } from './login/login.component';
 
@@ -19,7 +21,7 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,7 @@ import { LoginComponent } from './login/login.component';
     FiltroModule,
     FiltroResultadoModule,
     DiaristaCadastroModule,
+    DiaristaDetalheModule,
     routing
   ],
   providers: [],

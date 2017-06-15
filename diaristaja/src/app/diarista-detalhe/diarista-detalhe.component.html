@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <table class="table table-bordered" *ngIf="diarista">
+      <tbody>
+        <tr>
+          <td>Nome:</td>
+          <td>{{ diarista.nome }} {{ diarista.sobreNome }}</td>
+        </tr>
+        <tr>
+          <td>Endereço:</td>
+          <td>{{ diarista.endereco.endereco }}, {{ diarista.endereco.numero }}</td>
+        </tr>
+        <tr>
+          <td>Valor Máximo Cobrado:</td>
+          <td>{{ diarista.valorMaximoDiaria }}</td>
+        </tr>
+        <tr>
+          <td>Valor Minmo Cobrado:</td>
+          <td>{{ diarista.valorMinimoDiaria }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

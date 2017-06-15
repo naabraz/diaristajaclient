@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormControl } from "@angular/forms";
@@ -17,22 +19,24 @@ import { } from '@types/googlemaps';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  
+
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
 
   diaristas: IDiarista[];
-  diaristasLocalizacao: IMap [] = [];
-  
+  diaristasLocalizacao: IMap[] = [];
+
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
   constructor(
     private http: Http,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     this.getListaDiaristas();
@@ -60,12 +64,15 @@ export class MapComponent implements OnInit {
 
   private populaMapa() {
     for (let idxDiarista = 0; idxDiarista < this.diaristas.length; idxDiarista++) {
-      this.diaristasLocalizacao.push({  "nome": this.diaristas[idxDiarista].nome, 
-                                        "latitude": Number(this.diaristas[idxDiarista].endereco.latitude), 
-                                        "longitude": Number(this.diaristas[idxDiarista].endereco.longitude),
-                                        "valorMaximoDiaria": this.diaristas[idxDiarista].valorMaximoDiaria,
-                                        "valorMinimoDiaria": this.diaristas[idxDiarista].valorMinimoDiaria,
-                                        "endereco": this.diaristas[idxDiarista].endereco });
+      this.diaristasLocalizacao.push({
+        "id": this.diaristas[idxDiarista].id,
+        "nome": this.diaristas[idxDiarista].nome,
+        "latitude": Number(this.diaristas[idxDiarista].endereco.latitude),
+        "longitude": Number(this.diaristas[idxDiarista].endereco.longitude),
+        "valorMaximoDiaria": this.diaristas[idxDiarista].valorMaximoDiaria,
+        "valorMinimoDiaria": this.diaristas[idxDiarista].valorMinimoDiaria,
+        "endereco": this.diaristas[idxDiarista].endereco
+      });
     }
   }
 

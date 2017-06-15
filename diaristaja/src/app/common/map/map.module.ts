@@ -1,9 +1,11 @@
+import { routing } from './../../app.routes';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MapComponent } from './map.component';
+import { DiaristaDetalheRoutingModule } from './../../diarista-detalhe/diarista-detalhe.routing.module';
 
 import { AgmCoreModule } from '@agm/core';
 
@@ -16,6 +18,7 @@ import { AgmCoreModule } from '@agm/core';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    routing,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDCXlLtvgOpi8GcIxH8Q1puCiUv2BVljfM',
       libraries: ["places"]

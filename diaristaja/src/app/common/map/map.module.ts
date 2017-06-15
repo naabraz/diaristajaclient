@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MapComponent } from './map.component';
-import { DiaristaDetalheRoutingModule } from './../../diarista-detalhe/diarista-detalhe.routing.module';
 
 import { AgmCoreModule } from '@agm/core';
 

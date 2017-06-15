@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from "@angular/http";
 
-import 'rxjs/add/operator/map';
-
 import { AppConfig } from './../app.config';
 import { Observable } from "rxjs/Observable";
+import 'rxjs/add/operator/map';
 
-import { IDiarista } from './../base/idiarista.interface';
+import { IDiarista } from './../base/interface/idiarista.interface';
 
-export type DiaristaRetrieveListType= { status: number, result: string, resultList: IDiarista[] };
+export type DiaristaRetrieveListType = { status: number, result: string, resultList: IDiarista[] };
 
 @Injectable()
 export class MapService {

@@ -11,7 +11,7 @@
   </div>
 </div><br>
 
-<sebm-google-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-  <sebm-google-map-marker *ngFor="let diarista of diaristasLocalizacao" [latitude]="diarista.latitude" [longitude]="diarista.longitude"></sebm-google-map-marker>
-</sebm-google-map>
+<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+  <agm-marker *ngFor="let diarista of diaristasLocalizacao" [latitude]="diarista.latitude" [longitude]="diarista.longitude"></agm-marker>
+</agm-map>
 

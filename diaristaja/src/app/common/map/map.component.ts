@@ -1,11 +1,13 @@
-import { Http } from '@angular/http';
-import { MapService, DiaristaRetrieveListType } from './map.service';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { MapsAPILoader } from 'angular2-google-maps/core';
+import { Http } from '@angular/http';
 import { FormControl } from "@angular/forms";
 
-import { IDiarista } from './../base/idiarista.interface';
-import { IMap } from './../../common/base/imap.interface';
+import { MapsAPILoader } from '@agm/core';
+
+import { MapService, DiaristaRetrieveListType } from './map.service';
+
+import { IDiarista } from './../base/interface/idiarista.interface';
+import { IMap } from './../../common/base/interface/imap.interface';
 
 import { } from '@types/googlemaps';
 

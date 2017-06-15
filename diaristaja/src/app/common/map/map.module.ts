@@ -1,11 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { MapComponent } from './map.component';
 
-import { AgmCoreModule } from 'angular2-google-maps/core';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [

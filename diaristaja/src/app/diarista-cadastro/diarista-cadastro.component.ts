@@ -1,12 +1,15 @@
 import { Component, OnInit, NgZone, ElementRef, ViewChild, Input, Output } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormControl } from '@angular/forms';
-import { MapsAPILoader } from 'angular2-google-maps/core';
 
-import { Validator } from './../common/base/validator-model';
+import { MapsAPILoader } from '@agm/core';
+
+import { Validator } from './../common/base/model/validator-model';
+import { Endereco } from './../common/base/model/endereco-model';
+import { Diarista } from './../common/base/model/diarista-model';
+
 import { DiaristaService } from './diarista-cadastro.service';
-import { Endereco } from './../common/base/endereco-model';
-import { Diarista } from './../common/base/diarista-model';
+
 import { MapComponent } from './../common/map/map.component';
 
 @Component({
@@ -49,7 +52,6 @@ export class DiaristaCadastroComponent implements OnInit {
     this.diarista.endereco = new Endereco();
   }
 
-
   saveDiarista(): void {
 
     this.success = false;
@@ -71,7 +73,7 @@ export class DiaristaCadastroComponent implements OnInit {
       error => console.log(error)
       );
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-    
+
     // Redirecionar para pagina de login
   }
 
@@ -85,7 +87,7 @@ export class DiaristaCadastroComponent implements OnInit {
   private loadPlaces() {
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
+        types: ["address"],
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
@@ -95,7 +97,29 @@ export class DiaristaCadastroComponent implements OnInit {
             return;
           }
 
-          console.log(place);
+          for (let indexPlace = 0; indexPlace <= place.address_components.length; indexPlace++) {
+            if (place.address_components[indexPlace] !== undefined) {
+              for (let indexTypes = 0; indexTypes <= place.address_components[indexPlace].types.length; indexTypes++) {
+                switch (place.address_components[indexPlace].types[indexTypes]) {
+                  case 'route':
+                    this.diarista.endereco.endereco = place.address_components[indexPlace].long_name;
+                    break;
+                  case 'street_number':
+                    this.diarista.endereco.numero = place.address_components[indexPlace].long_name;
+                    break;
+                  case 'administrative_area_level_2':
+                    this.diarista.endereco.cidade = place.address_components[indexPlace].long_name;
+                    break;
+                  case 'administrative_area_level_1':
+                    this.diarista.endereco.estado = place.address_components[indexPlace].long_name;
+                    break;
+                  case 'postal_code':
+                    this.diarista.endereco.cep = place.address_components[indexPlace].long_name;
+                }
+              }
+            }
+          }
+
           this.diarista.endereco.latitude = place.geometry.location.lat();
           this.diarista.endereco.longitude = place.geometry.location.lng();
         });

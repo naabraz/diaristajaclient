@@ -1,10 +1,11 @@
-import { IFiltro } from './../common/base/ifiltro.interface';
-import { MapComponent } from './../common/map/map.component';
 import { Component, OnInit, NgZone, ElementRef, ViewChild, Input, Output } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormControl } from '@angular/forms';
 
-import { MapsAPILoader } from 'angular2-google-maps/core';
+import { MapsAPILoader } from '@agm/core';
+
+import { IFiltro } from './../common/base/interface/ifiltro.interface';
+import { MapComponent } from './../common/map/map.component';
 
 @Component({
   selector: 'filtro',

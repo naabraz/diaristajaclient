@@ -12,6 +12,22 @@
 </div><br>
 
 <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-  <agm-marker *ngFor="let diarista of diaristasLocalizacao" [latitude]="diarista.latitude" [longitude]="diarista.longitude"></agm-marker>
+  <agm-marker *ngFor="let diarista of diaristasLocalizacao" [latitude]="diarista.latitude" [longitude]="diarista.longitude" [iconUrl]="'assets/images/marker.png'">
+    <agm-info-window [disableAutoPan]="false">
+      <strong>
+        <p>{{ diarista.nome }}</p>
+        <p class="rating">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </p>
+        <p>R$: <span class="valorMinimoDiaria">{{ diarista.valorMinimoDiaria }}</span> a <span class="valorMaximoDiaria">{{ diarista.valorMaximoDiaria }}</span></p>
+        <p>{{ diarista.endereco.endereco }}, {{ diarista.endereco.numero }}</p>
+      </strong>
+      <p><a href="#">Ver Perfil</a></p>
+    </agm-info-window>
+  </agm-marker>
 </agm-map>
 

@@ -38,11 +38,10 @@ export class MapComponent implements OnInit {
     this.getListaDiaristas();
 
     this.setMapConfig();
-    //create search FormControl
+
     this.searchControl = new FormControl();
-    //set current position
+
     this.setCurrentPosition();
-    //load Places Autocomplete
     this.loadPlaces();
   }
 
@@ -61,7 +60,12 @@ export class MapComponent implements OnInit {
 
   private populaMapa() {
     for (let idxDiarista = 0; idxDiarista < this.diaristas.length; idxDiarista++) {
-      this.diaristasLocalizacao.push({ "latitude": Number(this.diaristas[idxDiarista].endereco.latitude), "longitude": Number(this.diaristas[idxDiarista].endereco.longitude) });
+      this.diaristasLocalizacao.push({  "nome": this.diaristas[idxDiarista].nome, 
+                                        "latitude": Number(this.diaristas[idxDiarista].endereco.latitude), 
+                                        "longitude": Number(this.diaristas[idxDiarista].endereco.longitude),
+                                        "valorMaximoDiaria": this.diaristas[idxDiarista].valorMaximoDiaria,
+                                        "valorMinimoDiaria": this.diaristas[idxDiarista].valorMinimoDiaria,
+                                        "endereco": this.diaristas[idxDiarista].endereco });
     }
   }
 

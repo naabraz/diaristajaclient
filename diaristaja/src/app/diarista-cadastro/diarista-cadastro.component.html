@@ -14,12 +14,12 @@
       </div>
 
     </div>
-    <div class="row">
+    <div class="row" *ngIf="!success">
       <div class="col-md-9 col-md-offset-2">
         <h1>Formulário de cadastro - Diarista</h1>
         <p>Os campos com (*) são obrigatórios:</p>
 
-        <form (ngSubmit)="saveDiarista()" *ngIf="!success">
+        <form (ngSubmit)="saveDiarista()">
           <div class="form-horizontal row col-md-12 divFiltro">
             <fieldset>
               <legend>Dados de Login:</legend>
@@ -74,6 +74,21 @@
                 <label>Telefone</label>
                 <input class="form-control" type="text" name="numero2" maxlength="9" [(ngModel)]="diarista.numero2">
               </div>
+            </fieldset>
+
+            <fieldset class="m-t-30">
+              <legend>Valores por diária:</legend>
+              
+              <div class="col-md-4">
+                <label>Valor mínimo:</label>
+                <input class="form-control" type="number" name="valorMinimoDiaria" [(ngModel)]="diarista.valorMinimoDiaria">
+              </div>
+
+              <div class="col-md-4">
+                <label>Valor máximo:</label>
+                <input class="form-control" type="number" name="valorMaximoDiaria" [(ngModel)]="diarista.valorMaximoDiaria">
+              </div>
+
             </fieldset>
 
             <fieldset class="m-t-30">

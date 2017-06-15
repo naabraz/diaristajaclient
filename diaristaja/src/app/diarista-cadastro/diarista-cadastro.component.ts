@@ -13,7 +13,7 @@ import { DiaristaService } from './diarista-cadastro.service';
 import { MapComponent } from './../common/map/map.component';
 
 @Component({
-  selector: 'app-diarista-cadastro',
+  selector: 'diarista-cadastro',
   templateUrl: './diarista-cadastro.component.html',
   styleUrls: ['./diarista-cadastro.component.css'],
   providers: [DiaristaService]

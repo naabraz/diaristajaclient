@@ -14,6 +14,8 @@ export class Diarista {
     sobreNome: String;
     documento: number;
     dataNascimento: number;
+    valorMinimoDiaria: number;
+    valorMaximoDiaria: number;
 
     constructor(){}
 }

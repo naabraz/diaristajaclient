@@ -18,6 +18,7 @@ import { } from '@types/googlemaps';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
+
 export class MapComponent implements OnInit {
 
   public latitude: number;
@@ -50,9 +51,9 @@ export class MapComponent implements OnInit {
   }
 
   private setMapConfig() {
-    this.zoom = 16;
-    this.latitude = -23.445658;
-    this.longitude = -46.735411;
+    this.zoom = 8;
+    this.latitude = -23.528170;
+    this.longitude = -46.699886;
   }
 
   private getListaDiaristas() {
@@ -99,7 +100,7 @@ export class MapComponent implements OnInit {
       });
     });
   }
-
+  
   private setCurrentPosition() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -107,6 +108,8 @@ export class MapComponent implements OnInit {
         this.longitude = position.coords.longitude;
         this.zoom = 16;
       });
+    } else {
+      this.zoom = 9;
     }
   }
 

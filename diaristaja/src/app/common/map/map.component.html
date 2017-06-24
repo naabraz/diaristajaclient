@@ -11,23 +11,37 @@
   </div>
 </div><br>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Detalhes da Diarista</h4>
+      </div>
+      <div class="modal-body" *ngIf="diaristaDetalhe">
+        <p><strong>Nome:</strong> {{ diaristaDetalhe.nome }} {{ diaristaDetalhe.sobreNome }}</p>
+        <p><strong>Avaliação:</strong> <i *ngFor="let number of [1,2,3,4,5]" class="fa fa-star rating" aria-hidden="true"></i></p>
+        <p><strong>Endereço:</strong> {{ diaristaDetalhe.endereco.endereco }}, {{ diaristaDetalhe.endereco.numero }}</p>
+        <p><strong>Valor:</strong> R$ <span class="valorMinimoDiaria">{{ diaristaDetalhe.valorMinimoDiaria }}</span> a R$ <span class="valorMaximoDiaria">{{ diaristaDetalhe.valorMaximoDiaria }}</span></p>     
+      </div>
+    
+      <div class="modal-footer">
+        <a class="btn btn-success">Quero contratar</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
   <agm-marker *ngFor="let diarista of diaristasLocalizacao" [latitude]="diarista.latitude" [longitude]="diarista.longitude" [iconUrl]="'assets/images/marker.png'">
     <agm-info-window [disableAutoPan]="false">
       <strong>
         <p>{{ diarista.nome }}</p>
-        <p class="rating">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        </p>
-        <p>R$: <span class="valorMinimoDiaria">{{ diarista.valorMinimoDiaria }}</span> a <span class="valorMaximoDiaria">{{ diarista.valorMaximoDiaria }}</span></p>
-        <p>{{ diarista.endereco.endereco }}, {{ diarista.endereco.numero }}</p>
+        <p><i *ngFor="let number of [1,2,3,4,5]" class="fa fa-star rating" aria-hidden="true"></i></p>
       </strong>
-      <p><a [routerLink]="['/diarista/detalhe', diarista.id]">Ver Perfil</a></p>
+
+      <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal" (click)="openModal(diarista)">Ver Mais</a>
+
     </agm-info-window>
   </agm-marker>
 </agm-map>
-

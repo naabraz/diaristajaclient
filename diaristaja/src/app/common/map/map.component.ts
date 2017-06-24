@@ -28,6 +28,7 @@ export class MapComponent implements OnInit {
 
   diaristas: IDiarista[];
   diaristasLocalizacao: IMap[] = [];
+  diaristaDetalhe: IDiarista;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -61,6 +62,10 @@ export class MapComponent implements OnInit {
     mapService.getDiaristas().subscribe((data: DiaristaRetrieveListType) => { this.diaristas = <IDiarista[]>data.resultList, this.populaMapa() },
       error => console.log(error),
       () => console.log('Diaristas-Master -> Get Diaristas Complete ==> :1', this.diaristas));
+  }
+
+  private openModal(paramDiarista){
+    this.diaristaDetalhe = paramDiarista;
   }
 
   private populaMapa() {

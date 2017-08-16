@@ -81,8 +81,6 @@ export class MapComponent implements OnInit {
       });
     }
 
-    debugger;
-
     this.mapsAPILoader.load().then(() => {
       this.latlngBounds = new window['google'].maps.LatLngBounds();
       this.diaristasLocalizacao.forEach((location) => {
@@ -113,6 +111,7 @@ export class MapComponent implements OnInit {
           }
 
           //set latitude, longitude and zoom
+          //chamar aqui o serviço
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 16;

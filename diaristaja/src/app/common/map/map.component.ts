@@ -25,6 +25,7 @@ export class MapComponent implements OnInit {
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
+  public latlngBounds;  
 
   diaristas: IDiarista[];
   diaristasLocalizacao: IMap[] = [];
@@ -47,7 +48,6 @@ export class MapComponent implements OnInit {
 
     this.searchControl = new FormControl();
 
-    this.setCurrentPosition();
     this.loadPlaces();
   }
 
@@ -80,7 +80,22 @@ export class MapComponent implements OnInit {
         "endereco": this.diaristas[idxDiarista].endereco
       });
     }
+
+    debugger;
+
+    this.mapsAPILoader.load().then(() => {
+      this.latlngBounds = new window['google'].maps.LatLngBounds();
+      this.diaristasLocalizacao.forEach((location) => {
+          this.latlngBounds.extend(new window['google'].maps.LatLng(location.latitude, location.longitude))
+      });
+    });
+
+    if(this.diaristas.length == 0){
+      this.setCurrentPosition();
+    }
   }
+
+ 
 
   private loadPlaces() {
     this.mapsAPILoader.load().then(() => {

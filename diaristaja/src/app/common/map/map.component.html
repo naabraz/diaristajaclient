@@ -32,7 +32,7 @@
   </div>
 </div>
 
-<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [fitBounds]="latlngBounds">
   <agm-marker *ngFor="let diarista of diaristasLocalizacao" [latitude]="diarista.latitude" [longitude]="diarista.longitude" [iconUrl]="'assets/images/marker.png'">
     <agm-info-window [disableAutoPan]="false">
       <strong>

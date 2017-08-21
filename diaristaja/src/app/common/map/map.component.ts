@@ -10,6 +10,8 @@ import { MapService, DiaristaRetrieveListType } from './map.service';
 
 import { IDiarista } from './../base/interface/idiarista.interface';
 import { IMap } from './../../common/base/interface/imap.interface';
+import { FiltroLocalizacao } from './../base/model/filtro-localizacao-model';
+
 
 import { } from '@types/googlemaps';
 
@@ -26,6 +28,10 @@ export class MapComponent implements OnInit {
   public searchControl: FormControl;
   public zoom: number;
   public latlngBounds;  
+  public success: Boolean;
+  public error: Boolean;
+  public messageResponseSuccess: String[];
+  public messageResponseError: String[];
 
   diaristas: IDiarista[];
   diaristasLocalizacao: IMap[] = [];
@@ -44,7 +50,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.getListaDiaristas();
 
-    this.setMapConfig();
+    // this.setMapConfig();
 
     this.searchControl = new FormControl();
 
@@ -69,6 +75,8 @@ export class MapComponent implements OnInit {
   }
 
   private populaMapa() {
+    debugger;
+    this.diaristasLocalizacao = [];
     for (let idxDiarista = 0; idxDiarista < this.diaristas.length; idxDiarista++) {
       this.diaristasLocalizacao.push({
         "id": this.diaristas[idxDiarista].id,
@@ -93,8 +101,6 @@ export class MapComponent implements OnInit {
     }
   }
 
- 
-
   private loadPlaces() {
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -111,10 +117,13 @@ export class MapComponent implements OnInit {
           }
 
           //set latitude, longitude and zoom
-          //chamar aqui o serviço
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
-          this.zoom = 16;
+          // this.latitude = place.geometry.location.lat();
+          // this.longitude = place.geometry.location.lng();
+          // this.zoom = 16;
+
+          debugger;
+          let filtroLocalizacao = new FiltroLocalizacao(place.geometry.location.lat().toString(), place.geometry.location.lng().toString(), 5);
+          this.searchDiaristasByLocalization(filtroLocalizacao);
         });
       });
     });
@@ -131,5 +140,39 @@ export class MapComponent implements OnInit {
       this.zoom = 9;
     }
   }
+
+  private searchDiaristasByLocalization(filtroLocalizacao: FiltroLocalizacao): void {
+    
+        this.success = false;
+        this.error = false;
+        this.messageResponseSuccess = [];
+        this.messageResponseError = [];
+        this.diaristas = [];
+
+        let mapService = new MapService(this.http);
+    
+        mapService.getDiaristasByLocalization(filtroLocalizacao)
+          .subscribe(
+          response => {
+            debugger;
+            if (response.status === 1) {
+
+              this.diaristas = response.resultList;
+              this.populaMapa();
+
+            } else {
+              this.validate(response.validators);
+            }
+          },
+          error => console.log(error)
+          );
+          }
+
+      private validate(validators) {
+        this.error = true;
+        for (var i = 0; i < validators.length; i++) {
+          this.messageResponseError.push(validators[i].message);
+        }
+      }
 
 }

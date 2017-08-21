@@ -95,11 +95,9 @@ export class MapComponent implements OnInit {
           this.latlngBounds.extend(new window['google'].maps.LatLng(location.latitude, location.longitude))
       });
     });
-
-    if(this.diaristas.length == 0){
-      this.setCurrentPosition();
-    }
   }
+
+ 
 
   private loadPlaces() {
     this.mapsAPILoader.load().then(() => {
@@ -158,7 +156,14 @@ export class MapComponent implements OnInit {
             if (response.status === 1) {
 
               this.diaristas = response.resultList;
-              this.populaMapa();
+
+                if(this.diaristas.length == 0){
+                  this.latitude = Number(filtroLocalizacao.latitude);
+                  this.longitude = Number(filtroLocalizacao.longitude);
+                  this.zoom = 16;
+                }else{
+                  this.populaMapa();
+                }
 
             } else {
               this.validate(response.validators);

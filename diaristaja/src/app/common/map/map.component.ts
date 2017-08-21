@@ -75,7 +75,6 @@ export class MapComponent implements OnInit {
   }
 
   private populaMapa() {
-    debugger;
     this.diaristasLocalizacao = [];
     for (let idxDiarista = 0; idxDiarista < this.diaristas.length; idxDiarista++) {
       this.diaristasLocalizacao.push({
@@ -113,13 +112,7 @@ export class MapComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-
-          //set latitude, longitude and zoom
-          // this.latitude = place.geometry.location.lat();
-          // this.longitude = place.geometry.location.lng();
-          // this.zoom = 16;
-
-          debugger;
+          
           let filtroLocalizacao = new FiltroLocalizacao(place.geometry.location.lat().toString(), place.geometry.location.lng().toString(), 5);
           this.searchDiaristasByLocalization(filtroLocalizacao);
         });
@@ -152,7 +145,6 @@ export class MapComponent implements OnInit {
         mapService.getDiaristasByLocalization(filtroLocalizacao)
           .subscribe(
           response => {
-            debugger;
             if (response.status === 1) {
 
               this.diaristas = response.resultList;

@@ -8,6 +8,16 @@ h2{
 .navbar-inverse{
     background: #4fa2be !important;
     border: none;
+    position: fixed;
+    width: 100%;
+    z-index: 4;
+}
+.navbar-inverse .navbar-toggle, .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form{
+    border-color: transparent;
+    background-color: transparent;
+}
+.navbar-toggle{
+
 }
 .navbar-fixed-top{
     top: 0;
@@ -20,6 +30,12 @@ h2{
 }
 .navbar-inverse .navbar-nav>li>a{
     color: #fff;
+}
+.fa-sign-out:before{
+    content: "\F08B";
+    font-size: 28px;
+    margin-top: -7px;
+    float: right;
 }
 .btn-primary{
     background: #4fa2be;
@@ -49,6 +65,8 @@ h2{
     text-align: center;
     clear: both;
     padding-bottom: 20px;
+    padding-top: 60px;
+    z-index: 2;
 }
 .colunas{
     text-align: center;
@@ -59,9 +77,6 @@ h2{
     display: initial !important;
     padding-bottom: 10px;
 }
-
-.invisible {display: none}
-
 .divLogin{
     padding: 20px;
     margin-top: 20px;
@@ -85,23 +100,31 @@ h2{
     font-size: 26px;
 }
 .divLogin .btnCliente{
-    background: url(assets/images/iconClientepeq.png) no-repeat 8px -5px #08657a;
+    background: url(assets/images/iconClientepeq.png) no-repeat 8px -5px #048dac;
     margin-top: 10px;
     height: 83px;
     padding: 18px 0 0 17px;
     font-size: 20px;
+}
+.divLogin .btnCliente:hover{
+    background: url(assets/images/iconClientepeq.png) no-repeat 8px -5px #08657a;
+}
+.divLogin .btnDiarista:hover{
+    background: url(assets/images/iconFaxpeq.png) no-repeat left 3px #08657a;
 }
 .divLogin input{
     margin:10px 0 0 0;
 }
 
 .divFiltro{
-    padding: 20px;
-    margin-top: 20px;
+    padding: 0;
+    margin-top: -1px;
     font-size: 14px;
     background-color: #fff;
-    border: 1px solid #d8dee2;
     border-radius: 0 0 3px 3px;
+    border-right: 1px solid #e3e3e3;
+    border-left: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
 }
 .divFiltro > div{
     margin:10px 0 10px 0; 
@@ -111,6 +134,23 @@ h2{
     max-width: auto;
     margin-top: 10px;
     float: left;
+}
+.divFiltro .labelCheck{
+    float: left;
+    padding-left: 10px;
+}
+.divFiltro .naofaco{
+    padding: 5px 5px 5px 10px;
+    text-align: center;
+    width: 100%;
+    float: left;
+    font-size: 17px;
+}
+.divFiltro .botoesForm{
+    width: 100%;
+    float: left;
+    clear: both;
+    margin-top: 10px;
 }
 .mapaGoogle{
     float: left;
@@ -128,6 +168,46 @@ h2{
     position: relative;
     z-index: 1;
 }
+.divBusca label[for="endereco"]{
+    font-size: 0px;
+}
+.divBusca label[for="endereco"]:before{
+    content:'Encontre a Diarista mais prÃ³xima de vocÃª:';
+    font-size: 12px;
+}
+.divBusca .linksBusca{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 2;
+    clear: both;
+    background: #fff;
+    height: 84px;
+    border: 1px solid #e3e3e3;
+    -webkit-box-shadow: 4px 0px 22px 0px rgba(0,0,0,0.18);
+    -moz-box-shadow: 4px 0px 22px 0px rgba(0,0,0,0.18);
+    box-shadow: 4px 0px 22px 0px rgba(0,0,0,0.18);
+}
+.divBusca .linksBusca li{
+    list-style: none;
+    background: #fff;
+}
+.divBusca .linksBusca li.soudiarista a{
+    text-indent: -9999px;
+    float: left;
+    background: url(assets/images/icoSouDiarista.png) no-repeat;
+    width: 171px;
+    height: 71px;
+}
+
+.divBusca .linksBusca li.buscaAvancada a{
+    text-indent: -9999px;
+    float: right;
+    background: url(assets/images/icoBuscaAvancada.png) no-repeat;
+    width: 171px;
+    height: 71px;
+    margin-top: 8px;
+}
 
 footer {
     padding: 30px 0;
@@ -144,22 +224,53 @@ footer {
     background: #fff;
 }
 
+
+/*MAPA*/
+agm-map, .sebm-google-map-container[_ngcontent-c3]{
+    width: 95%;
+    margin: 0 0 0 5%;
+    float: left;
+    border: 1px solid #e3e3e3;
+}
+
+
+
+
 @media(min-width:768px) {
     .navbar-fixed-top .navbar-brand {
         padding: 15px 0;
     }
 }
 @media(max-width:768px) {
-        h1{
-            font-size: 26px;
-        }
-        .divLogin .btnDiarista{
+    h1{
+        font-size: 26px;
+    }
+    .divBusca .linksBusca{
+        width: 100%;
+        padding-left: 0;
+    }
+    .divBusca .linksBusca li.soudiarista a{
+            background-size: 95%;
+            width: 50%;
+            float: left;
+    }
+
+    .divBusca .linksBusca li.buscaAvancada a{
+            background-size: 75%;
+            width: 50%;
+            float: right;
+            background-position: top right;
+    }
+    .divLogin .btnDiarista{
         background: #048dac;
         margin-top: 10px;
         height: 83px;
         padding: 27px 0 0 10px;
         font-size: 20px;
         width: 45%;
+    }
+     .divLogo img{
+        width: 150px;
     }
     .divLogin .btnCliente{
         background: #08657a;
@@ -170,4 +281,58 @@ footer {
         width: 45%;
         margin-left: 3%;
     }
+    .navbar-nav{
+        width: 303px;
+    }
+    .navbar-nav li{
+        position: relative;
+        display: inline;
+        width: 150px;
+        float: left;
+    }
+}
+
+.material-switch > input[type="checkbox"] {
+    display: none;   
+}
+
+.material-switch > label {
+    cursor: pointer;
+    height: 0px;
+    position: relative; 
+    width: 40px;  
+}
+
+.material-switch > label::before {
+    background: rgb(0, 0, 0);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    content: '';
+    height: 16px;
+    margin-top: -8px;
+    position:absolute;
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+    width: 40px;
+}
+.material-switch > label::after {
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    content: '';
+    height: 24px;
+    left: -4px;
+    margin-top: -8px;
+    position: absolute;
+    top: -4px;
+    transition: all 0.3s ease-in-out;
+    width: 24px;
+}
+.material-switch > input[type="checkbox"]:checked + label::before {
+    background: inherit;
+    opacity: 0.5;
+}
+.material-switch > input[type="checkbox"]:checked + label::after {
+    background: inherit;
+    left: 20px;
 }

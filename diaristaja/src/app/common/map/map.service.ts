@@ -21,7 +21,7 @@ export class MapService {
     private appURL = AppConfig.APP_URL;
 
     public getDiaristas(): Observable<DiaristaRetrieveListType> {
-        return this.http.get(this.appURL)
+        return this.http.get(this.appURL + "/diaristas")
             .map((response: Response) => <DiaristaRetrieveListType>response.json());
     }
 
@@ -30,7 +30,7 @@ export class MapService {
                 let headers = new Headers({ 'Content-Type': 'application/json' });
                 let options = new RequestOptions({ headers: headers });
         
-                return this.http.post(this.appURL+"/filtro/localizacao", filtroLocalizacao, options)
+                return this.http.post(this.appURL+"/diaristas/filtro/localizacao", filtroLocalizacao, options)
                     .map(this.extractData)
                     .catch(this.handleErrorObservable);
             }

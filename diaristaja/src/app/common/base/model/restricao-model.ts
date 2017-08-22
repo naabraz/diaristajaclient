@@ -1,7 +1,7 @@
 
 export class Restricao {
-    id: number;
-    uuid: String;
+    id: Number;
+    nome: String;
 
     constructor(){}
 }

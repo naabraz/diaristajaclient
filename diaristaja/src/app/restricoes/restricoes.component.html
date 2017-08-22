@@ -1,28 +1,8 @@
-<div class="col-md-6 col-sm-12 col-xs-12 m-b-15">
+<div *ngFor="let restricao of restricoes; let i = index" [attr.data-index]="i" class="col-md-6 col-sm-12 col-xs-12 m-b-15">
     <div class="material-switch pull-left">
-        <input id="someSwitchOptionInfo1" name="someSwitchOption001" type="checkbox"/>
-        <label for="someSwitchOptionInfo1" class="label-info"></label>
+        <input [id]="'someSwitchOptionInfo'+i" [name]="'someSwitchOptionInfo'+i" type="checkbox" (click) = "saveUsername(restricao, i, $event)"
+        [checked]="restricao.selecionado"/>
+        <label [for]="'someSwitchOptionInfo'+i" class="label-info"></label>
     </div>
-    <span class="labelCheck">Não cuido de cachorro</span>
-</div>
- <div class="col-md-6 col-sm-12 col-xs-12 m-b-15">
-    <div class="material-switch pull-left">
-        <input id="someSwitchOptionInfo2" name="someSwitchOption002" type="checkbox"/>
-        <label for="someSwitchOptionInfo2" class="label-info"></label>
-    </div>
-     <span class="labelCheck">Não olho crianças</span>
-</div>
- <div class="col-md-6 col-sm-12 col-xs-12 m-b-15">
-    <div class="material-switch pull-left">
-        <input id="someSwitchOptionInfo3" name="someSwitchOption003" type="checkbox"/>
-        <label for="someSwitchOptionInfo3" class="label-info"></label>
-    </div>
-    <span class="labelCheck">Não cuido de idosos</span>
-</div>
- <div class="col-md-6 col-sm-12 col-xs-12 m-b-15">
-    <div class="material-switch pull-left">
-        <input id="someSwitchOptionInfo4" name="someSwitchOption004" type="checkbox"/>
-        <label for="someSwitchOptionInfo4" class="label-info"></label>
-    </div>
-     <span class="labelCheck">Não passo roupas</span>
+    <span class="labelCheck">{{restricao.nome}}</span>
 </div>

@@ -25,7 +25,7 @@ export class DiaristaService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.post(this.appURL, diarista, options)
+        return this.http.post(this.appURL + "/diaristas" , diarista, options)
             .map(this.extractData)
             .catch(this.handleErrorObservable);
     }

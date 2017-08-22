@@ -17,28 +17,13 @@ export type RestricaoRetrieveListType= { status: number, result: Restricao, resu
 @Injectable()
 export class RestricaoService {
     private appURL = AppConfig.APP_URL;
-    private http: Http;
 
-    constructor() { }
+    constructor(private http: Http) { }
 
-    getRestricoes(): Observable<RestricaoRetrieveListType> {
+    public getRestricoes(): Observable<RestricaoRetrieveListType> {
 
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this.http.post(this.appURL+"/restricoes", options)
-            .map(this.extractData)
-            .catch(this.handleErrorObservable);
-    }
-
-    private extractData(res: Response) {
-        let body = res.json();
-
-        return body;
-    }
-    private handleErrorObservable(error: Response | any) {
-        console.error('ERROR ' + error.message || error);
-        return Observable.throw(error.message || error);
+            return this.http.get(this.appURL + "/restricoes")
+            .map((response: Response) => <RestricaoRetrieveListType>response.json());
     }
 
 }

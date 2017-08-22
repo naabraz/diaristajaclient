@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule } from '@agm/core';
 
 import { DiaristaCadastroComponent } from './diarista-cadastro.component';
+import { RestricoesModule } from "app/restricoes/restricoes.module";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DiaristaCadastroComponent } from './diarista-cadastro.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    RestricoesModule
   ],
   providers: [],
   bootstrap: [],

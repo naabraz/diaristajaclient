@@ -15,14 +15,15 @@ import { DiaristaDetalheModule } from './diarista-detalhe/diarista-detalhe.modul
 
 import { routing } from './app.routes';
 import { LoginComponent } from './login/login.component';
+import { RestricoesModule } from "app/restricoes/restricoes.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent,
-  ],
+    LoginComponent
+    ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -32,6 +33,7 @@ import { LoginComponent } from './login/login.component';
     FiltroResultadoModule,
     DiaristaCadastroModule,
     DiaristaDetalheModule,
+    RestricoesModule,
     routing
   ],
   providers: [],

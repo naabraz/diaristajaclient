@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AgmCoreModule } from '@agm/core';
+import { RestricoesModule } from './../restricoes/restricoes.module';
 
 import { FiltroComponent } from './filtro.component';
 
@@ -15,7 +16,8 @@ import { FiltroComponent } from './filtro.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    RestricoesModule
   ],
   providers: [],
   bootstrap: [],

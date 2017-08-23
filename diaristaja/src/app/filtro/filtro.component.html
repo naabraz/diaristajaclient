@@ -25,6 +25,10 @@
               Numero
               <input class="form-control" type="text" [(ngModel)]="numero" name="numero" placeholder="200">
             </div>
+            <div class="col-md-12 m-t-20 m-b-20">
+              <strong class="alert-danger naofaco">Selecione os serviços que você precisa:</strong>
+           </div>
+            <app-restricoes></app-restricoes>
             <div class="col-md-12">
               Endereço
               <input id="endereco" class="form-control" [(ngModel)]="endereco" name="endereco" placeholder="Pesquise diaristas por endereço" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search [formControl]="searchControl">

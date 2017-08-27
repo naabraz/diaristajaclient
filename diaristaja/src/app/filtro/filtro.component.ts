@@ -1,3 +1,5 @@
+import { Diarista } from './../common/base/model/diarista-model';
+import { IDiarista } from './../common/base/interface/idiarista.interface';
 import { Component, OnInit, NgZone, ElementRef, ViewChild, Input, Output } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormControl } from '@angular/forms';
@@ -22,6 +24,8 @@ export class FiltroComponent implements OnInit {
   cep: number;
   numero: number;
   endereco: string;
+ 
+  filtroResultado: Diarista;
 
   public searchControl: FormControl;
 
@@ -37,6 +41,16 @@ export class FiltroComponent implements OnInit {
     this.searchControl = new FormControl();
     
     this.loadPlaces();
+
+    this.filtroResultado = new Diarista();
+
+  }
+
+  private showResult(paramEndereco) {
+    this.filtroResultado.nome = 'Gabriela';
+    this.filtroResultado.endereco = {id: null, uuid: null, referencia: null, cidade: 'Sao Paulo', estado: 'SP', cep: '1887788', latitude: -122222, longitude: -12333, endereco: 'Rua dos Alcatrazes', numero: '189'};
+    this.filtroResultado.valorMaximoDiaria = 100;
+    this.filtroResultado.valorMinimoDiaria = 50;
   }
 
   private loadPlaces() {

@@ -33,11 +33,18 @@
             </div>
             <div class="col-md-12">
               <button class="btn btn-danger" type="reset">Limpar</button>
-              <a class="btn btn-success btn-lg col-md-6 pull-right btnLogin" href="#">Avançar</a>
+              <a class="btn btn-success btn-lg col-md-6 pull-right btnLogin" (click)="showResult(endereco)">Avançar</a>
             </div>
 
           </div>
         </form>
+      </div>
+      <div class="col-md-8 col-md-offset-2" *ngIf="filtroResultado.nome">
+        <h1>Diaristas encontradas</h1>
+        <p><strong>Nome:</strong> {{ filtroResultado.nome }}</p>
+        <p><strong>Endereço:</strong> {{ filtroResultado.endereco.endereco }} - {{ filtroResultado.endereco.numero }}</p>
+        <p><strong>Avaliação:</strong> <i *ngFor="let number of [1,2,3,4,5]" class="fa fa-star rating" aria-hidden="true"></i></p>        
+        <p><strong>Valor:</strong> R$ <span class="valorMinimoDiaria">{{ filtroResultado.valorMinimoDiaria }}</span> a R$ <span class="valorMaximoDiaria">{{ filtroResultado.valorMaximoDiaria }}</span></p>     
       </div>
     </div>
   </div>

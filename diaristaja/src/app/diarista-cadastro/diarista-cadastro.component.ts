@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, ElementRef, ViewChild, Input, Output } from '@angular/core';
+import { Component, OnInit, NgZone, ElementRef, ViewChild, AfterViewInit, Input, Output } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormControl } from '@angular/forms';
 
@@ -11,6 +11,7 @@ import { Diarista } from './../common/base/model/diarista-model';
 import { DiaristaService } from './diarista-cadastro.service';
 
 import { MapComponent } from './../common/map/map.component';
+import { RestricoesComponent } from 'app/restricoes/restricoes.component';
 
 @Component({
   selector: 'diarista-cadastro',
@@ -31,6 +32,8 @@ export class DiaristaCadastroComponent implements OnInit {
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
+
+  @ViewChild(RestricoesComponent) restricao;
 
   constructor(
     private http: Http,
@@ -59,6 +62,8 @@ export class DiaristaCadastroComponent implements OnInit {
 
     this.messageResponseSuccess = [];
     this.messageResponseError = [];
+
+    this.diarista.restricoes = this.restricao.restricoesSelecionadas;
 
     this.diaristaService.saveDiarista(this.diarista)
       .subscribe(

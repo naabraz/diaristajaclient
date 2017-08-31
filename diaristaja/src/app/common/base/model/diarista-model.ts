@@ -1,4 +1,5 @@
 import { Endereco } from './endereco-model';
+import { Restricao } from "app/common/base/model/restricao-model";
 
 export class Diarista {
     id: number;
@@ -16,6 +17,7 @@ export class Diarista {
     dataNascimento: number;
     valorMinimoDiaria: number;
     valorMaximoDiaria: number;
+    restricoes: Restricao[];
 
     constructor(){}
 }

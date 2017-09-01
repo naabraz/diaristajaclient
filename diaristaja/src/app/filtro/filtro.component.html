@@ -20,7 +20,7 @@
 
             <div class="col-md-4">
               Valor máximo:
-              <input class="form-control" type="number" name="valorMaximoDiaria">
+              <input class="form-control" type="number" [(ngModel)]="valorMaximoDiaria" name="valorMaximoDiaria">
             </div>
 
             <div class="col-md-12 m-t-20 m-b-20">
@@ -32,8 +32,8 @@
               <input id="endereco" class="form-control" [(ngModel)]="endereco" name="endereco" placeholder="Pesquise diaristas por endereço" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search [formControl]="searchControl">
             </div>
             <div class="col-md-12">
-              <button class="btn btn-danger" type="reset">Limpar</button>
-              <a class="btn btn-success btn-lg col-md-6 pull-right btnLogin" (click)="showResult(endereco)">Avançar</a>
+              <button class="btn btn-danger" type="reset" (click)="limpa()">Limpar</button>
+              <a class="btn btn-success btn-lg col-md-6 pull-right btnLogin" (click)="busca()">Avançar</a>
             </div>
 
           </div>

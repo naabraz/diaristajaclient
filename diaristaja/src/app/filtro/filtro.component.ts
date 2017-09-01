@@ -8,11 +8,14 @@ import { MapsAPILoader } from '@agm/core';
 
 import { IFiltro } from './../common/base/interface/ifiltro.interface';
 import { MapComponent } from './../common/map/map.component';
+import { RestricoesComponent } from 'app/restricoes/restricoes.component';
+import { FiltroService } from "app/filtro/filtro.service";
 
 @Component({
   selector: 'filtro',
   templateUrl: './filtro.component.html',
-  styleUrls: ['./filtro.component.css']
+  styleUrls: ['./filtro.component.css'],
+  providers: [FiltroService]
 })
 export class FiltroComponent implements OnInit {
 
@@ -24,7 +27,10 @@ export class FiltroComponent implements OnInit {
   cep: number;
   numero: number;
   endereco: string;
- 
+  valor: number;
+  raio: number = 5;
+  restricoesId: number[] = [];
+
   filtroResultado: Diarista;
 
   public searchControl: FormControl;
@@ -32,10 +38,13 @@ export class FiltroComponent implements OnInit {
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
+  @ViewChild(RestricoesComponent) restricao;
+
   constructor(
     private http: Http,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone,
+    private filtroService: FiltroService) { }
 
   ngOnInit() {
     this.searchControl = new FormControl();
@@ -43,14 +52,18 @@ export class FiltroComponent implements OnInit {
     this.loadPlaces();
 
     this.filtroResultado = new Diarista();
-
   }
 
-  private showResult(paramEndereco) {
-    this.filtroResultado.nome = 'Gabriela';
-    this.filtroResultado.endereco = {id: null, uuid: null, referencia: null, cidade: 'Sao Paulo', estado: 'SP', cep: '1887788', latitude: -122222, longitude: -12333, endereco: 'Rua dos Alcatrazes', numero: '189'};
-    this.filtroResultado.valorMaximoDiaria = 100;
-    this.filtroResultado.valorMinimoDiaria = 50;
+  limpa(): void {
+    this.restricao.restricoesSelecionadas = [];
+  }
+
+  busca(): void {  
+    for (let auxRestricoes = 0;  auxRestricoes < this.restricao.restricoesSelecionadas.length; auxRestricoes++) {
+      this.restricoesId.push(this.restricao.restricoesSelecionadas[auxRestricoes].id);
+    }
+
+    this.filtroService.searchFilter(this.latitude, this.longitude, this.valor, this.raio, this.restricoesId);
   }
 
   private loadPlaces() {

@@ -1,3 +1,4 @@
+import { FiltroAvancado } from './../common/base/model/filtro-avancado-model';
 import { Diarista } from './../common/base/model/diarista-model';
 import { IDiarista } from './../common/base/interface/idiarista.interface';
 import { Component, OnInit, NgZone, ElementRef, ViewChild, Input, Output } from '@angular/core';
@@ -9,7 +10,7 @@ import { MapsAPILoader } from '@agm/core';
 import { IFiltro } from './../common/base/interface/ifiltro.interface';
 import { MapComponent } from './../common/map/map.component';
 import { RestricoesComponent } from 'app/restricoes/restricoes.component';
-import { FiltroService } from "app/filtro/filtro.service";
+import { FiltroService, FiltroAvancadoRetrieveListType } from "app/filtro/filtro.service";
 
 @Component({
   selector: 'filtro',
@@ -27,11 +28,12 @@ export class FiltroComponent implements OnInit {
   cep: number;
   numero: number;
   endereco: string;
-  valor: number;
+  valorMaximoDiaria: number;
   raio: number = 5;
   restricoesId: number[] = [];
 
-  filtroResultado: Diarista;
+  filtroResultado: Diarista[];
+  filtroAvancado: FiltroAvancado = new FiltroAvancado();
 
   public searchControl: FormControl;
 
@@ -51,11 +53,16 @@ export class FiltroComponent implements OnInit {
     
     this.loadPlaces();
 
-    this.filtroResultado = new Diarista();
+    this.filtroResultado = [];
   }
 
   limpa(): void {
     this.restricao.restricoesSelecionadas = [];
+    this.restricoesId = [];
+    this.latitude = null;
+    this.longitude = null;
+    this.valorMaximoDiaria = null;
+    this.filtroResultado = [];
   }
 
   busca(): void {  
@@ -63,7 +70,18 @@ export class FiltroComponent implements OnInit {
       this.restricoesId.push(this.restricao.restricoesSelecionadas[auxRestricoes].id);
     }
 
-    this.filtroService.searchFilter(this.latitude, this.longitude, this.valor, this.raio, this.restricoesId);
+    this.filtroAvancado.latitude = this.latitude;
+    this.filtroAvancado.longitude = this.longitude; 
+    this.filtroAvancado.raio = this.raio;
+    this.filtroAvancado.valor = this.valorMaximoDiaria; 
+    this.filtroAvancado.restricoes = this.restricoesId;
+
+    let filtroAvancadoService = new FiltroService(this.http);
+    
+    filtroAvancadoService.searchFilter(this.filtroAvancado).subscribe((data: FiltroAvancadoRetrieveListType) => { this.filtroResultado = <Diarista[]>data.resultList },
+    error => console.log(error),
+    () => console.log('FiltroAvancado-Master -> Search Complete ==> :1', this.filtroResultado));
+
   }
 
   private loadPlaces() {

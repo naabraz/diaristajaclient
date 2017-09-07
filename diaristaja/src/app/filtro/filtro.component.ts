@@ -1,3 +1,4 @@
+import { Restricao } from './../common/base/model/restricao-model';
 import { FiltroAvancado } from './../common/base/model/filtro-avancado-model';
 import { Diarista } from './../common/base/model/diarista-model';
 import { IDiarista } from './../common/base/interface/idiarista.interface';
@@ -35,12 +36,14 @@ export class FiltroComponent implements OnInit {
   filtroResultado: Diarista[];
   filtroAvancado: FiltroAvancado = new FiltroAvancado();
 
+  restricoesSelecionadas: Restricao[];
+
   public searchControl: FormControl;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
-  @ViewChild(RestricoesComponent) restricao;
+ // @ViewChild(RestricoesComponent) restricao;
 
   constructor(
     private http: Http,
@@ -57,30 +60,42 @@ export class FiltroComponent implements OnInit {
   }
 
   limpa(): void {
-    this.restricao.restricoesSelecionadas = [];
+    this.restricoesSelecionadas = [];
     this.restricoesId = [];
     this.latitude = null;
     this.longitude = null;
     this.valorMaximoDiaria = null;
     this.filtroResultado = [];
+    //o limpa nao esta limpando o receivemessage
   }
 
-  busca(): void {  
-    for (let auxRestricoes = 0;  auxRestricoes < this.restricao.restricoesSelecionadas.length; auxRestricoes++) {
-      this.restricoesId.push(this.restricao.restricoesSelecionadas[auxRestricoes].id);
+  receiveMessage($event) {
+    console.log($event)
+    this.restricoesSelecionadas = $event;
+  }
+
+  busca(): void {
+    //console.log(this.restricoesSelecionadas.length);
+
+    for (let auxRestricoes = 0;  auxRestricoes < this.restricoesSelecionadas.length; auxRestricoes++) {
+      console.log(this.restricoesSelecionadas[auxRestricoes].id + ' - ' + this.restricoesSelecionadas[auxRestricoes].nome);
+      //this.restricoesId.push(this.restricoesSelecionadas[auxRestricoes].id);
+    }
+    /*for (let auxRestricoes = 0;  auxRestricoes < this.restricoesSelecionadas.length; auxRestricoes++) {
+      this.restricoesId.push(this.restricoesSelecionadas[auxRestricoes].id);
     }
 
     this.filtroAvancado.latitude = this.latitude;
     this.filtroAvancado.longitude = this.longitude; 
     this.filtroAvancado.raio = this.raio;
     this.filtroAvancado.valor = this.valorMaximoDiaria; 
-    this.filtroAvancado.restricoes = this.restricoesId;
+    this.filtroAvancado.restricoesId = this.restricoesId;
 
     let filtroAvancadoService = new FiltroService(this.http);
     
     filtroAvancadoService.searchFilter(this.filtroAvancado).subscribe((data: FiltroAvancadoRetrieveListType) => { this.filtroResultado = <Diarista[]>data.resultList },
     error => console.log(error),
-    () => console.log('FiltroAvancado-Master -> Search Complete ==> :1', this.filtroResultado));
+    () => console.log('FiltroAvancado-Master -> Search Complete ==> :1', this.filtroResultado));*/
 
   }
 

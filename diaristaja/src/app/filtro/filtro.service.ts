@@ -23,7 +23,7 @@ export class FiltroService {
   searchFilter(filtroAvancado: FiltroAvancado): Observable<FiltroAvancadoRetrieveListType> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-
+    console.log(filtroAvancado);
     return this.http.post(this.appURL + "/diaristas/filtro/avancado", filtroAvancado, options)
       .map(this.extractData)
       .catch(this.handleErrorObservable);

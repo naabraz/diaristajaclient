@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { RestricaoService, RestricaoRetrieveListType } from './../restricoes/restricoes.service';
 import { Restricao } from "app/common/base/model/restricao-model";
@@ -16,6 +16,8 @@ export class RestricoesComponent implements OnInit {
   public restricoes: Restricao[];
   public checked: false;
   public restricoesSelecionadas: Restricao[] = [];
+
+  @Output() messageEvent = new EventEmitter<Restricao[]>();
 
   constructor(private http: Http) { }
 
@@ -38,6 +40,11 @@ export class RestricoesComponent implements OnInit {
       this.removeItem(restricao)    
     }
     
+    this.sendMessage();
+  }
+
+  sendMessage() {
+    this.messageEvent.emit(this.restricoesSelecionadas);
   }
 
   private removeItem(restricao: Restricao) {

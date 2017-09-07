@@ -6,6 +6,6 @@ export class FiltroAvancado {
     longitude: number;
     raio: number;
     valor: number;
-    restricoes: number[];
+    restricoesId: number[];
 
 }

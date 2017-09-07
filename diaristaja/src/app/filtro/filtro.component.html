@@ -26,7 +26,7 @@
             <div class="col-md-12 m-t-20 m-b-20">
               <strong class="alert-danger">Selecione os serviços que você precisa:</strong>
             </div>
-            <app-restricoes></app-restricoes>
+            <app-restricoes (messageEvent) = "receiveMessage($event)"></app-restricoes>
             <div class="col-md-12">
               Endereço
               <input id="endereco" class="form-control" [(ngModel)]="endereco" name="endereco" placeholder="Pesquise diaristas por endereço"

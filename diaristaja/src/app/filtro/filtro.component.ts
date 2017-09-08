@@ -1,7 +1,3 @@
-import { Restricao } from './../common/base/model/restricao-model';
-import { FiltroAvancado } from './../common/base/model/filtro-avancado-model';
-import { Diarista } from './../common/base/model/diarista-model';
-import { IDiarista } from './../common/base/interface/idiarista.interface';
 import { Component, OnInit, NgZone, ElementRef, ViewChild, Input, Output } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormControl } from '@angular/forms';
@@ -9,8 +5,14 @@ import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 
 import { IFiltro } from './../common/base/interface/ifiltro.interface';
+import { IDiarista } from './../common/base/interface/idiarista.interface';
+
 import { MapComponent } from './../common/map/map.component';
-import { RestricoesComponent } from 'app/restricoes/restricoes.component';
+
+import { Diarista } from './../common/base/model/diarista-model';
+import { Restricao } from './../common/base/model/restricao-model';
+import { FiltroAvancado } from './../common/base/model/filtro-avancado-model';
+
 import { FiltroService, FiltroAvancadoRetrieveListType } from "app/filtro/filtro.service";
 
 @Component({
@@ -43,8 +45,6 @@ export class FiltroComponent implements OnInit {
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
- // @ViewChild(RestricoesComponent) restricao;
-
   constructor(
     private http: Http,
     private mapsAPILoader: MapsAPILoader,
@@ -66,23 +66,23 @@ export class FiltroComponent implements OnInit {
     this.longitude = null;
     this.valorMaximoDiaria = null;
     this.filtroResultado = [];
+    this.receiveMessage(null);
     //o limpa nao esta limpando o receivemessage
   }
 
   receiveMessage($event) {
-    console.log($event)
     this.restricoesSelecionadas = $event;
+    this.restricoesId = [];
+    console.log($event)
   }
 
   busca(): void {
-    //console.log(this.restricoesSelecionadas.length);
-
-    for (let auxRestricoes = 0;  auxRestricoes < this.restricoesSelecionadas.length; auxRestricoes++) {
-      console.log(this.restricoesSelecionadas[auxRestricoes].id + ' - ' + this.restricoesSelecionadas[auxRestricoes].nome);
-      //this.restricoesId.push(this.restricoesSelecionadas[auxRestricoes].id);
-    }
-    /*for (let auxRestricoes = 0;  auxRestricoes < this.restricoesSelecionadas.length; auxRestricoes++) {
-      this.restricoesId.push(this.restricoesSelecionadas[auxRestricoes].id);
+    if (this.restricoesSelecionadas != null || undefined) {
+      for (let auxRestricoes = 0;  auxRestricoes < this.restricoesSelecionadas.length; auxRestricoes++) {
+        if (!this.restricoesId.includes(this.restricoesSelecionadas[auxRestricoes].id)) {
+          this.restricoesId.push(this.restricoesSelecionadas[auxRestricoes].id);
+        }
+      }
     }
 
     this.filtroAvancado.latitude = this.latitude;
@@ -95,8 +95,7 @@ export class FiltroComponent implements OnInit {
     
     filtroAvancadoService.searchFilter(this.filtroAvancado).subscribe((data: FiltroAvancadoRetrieveListType) => { this.filtroResultado = <Diarista[]>data.resultList },
     error => console.log(error),
-    () => console.log('FiltroAvancado-Master -> Search Complete ==> :1', this.filtroResultado));*/
-
+    () => console.log('FiltroAvancado-Master -> Search Complete ==> :1', this.filtroResultado));
   }
 
   private loadPlaces() {

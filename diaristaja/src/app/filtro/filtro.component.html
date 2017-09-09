@@ -3,37 +3,36 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <h1>Encontre uma diarista</h1>
-        <p>Preenche os dados abaixo com as informações da diária:</p>
+        <p>Preencha os dados abaixo com as informações da diária:</p>
 
         <form>
           <div class="form-horizontal row col-md-12 divFiltro">
 
             <div class="col-md-6">
-              Data
+              Qual a data?
               <input class="form-control" type="date" [(ngModel)]="data" name="data" placeholder="DD/MM/AAAA">
             </div>
 
             <div class="col-md-6">
-              Metragem
+              Metragem do local:
               <input class="form-control" type="text" [(ngModel)]="metragem" name="metragem" placeholder="60 m2">
             </div>
 
             <div class="col-md-4">
-              Valor máximo:
+              Pago no máximo:
               <input class="form-control" type="number" [(ngModel)]="valorMaximoDiaria" name="valorMaximoDiaria">
             </div>
 
             <div class="col-md-12 m-t-20 m-b-20">
-              <strong class="alert-info">Selecione os serviços que você precisa:</strong>
+              <strong class="alert-info">O que precisará ser feito?</strong>
             </div>
-            <app-restricoes (messageEvent)="receiveMessage($event)"></app-restricoes>
+            <app-restricoes (restricoesEvent)="receiveRestricoes($event)"></app-restricoes>
             <div class="col-md-12">
-              Endereço
+              Local da diária:
               <input id="endereco" class="form-control" [(ngModel)]="endereco" name="endereco" placeholder="Pesquise diaristas por endereço"
                 autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search [formControl]="searchControl">
             </div>
             <div class="col-md-12">
-              <button class="btn btn-danger" type="reset" (click)="limpa()">Limpar</button>
               <a class="btn btn-success btn-lg col-md-6 pull-right btnLogin" (click)="busca()">Avançar</a>
             </div>
 
@@ -41,12 +40,10 @@
         </form>
       </div>
       <div class="col-md-8 col-md-offset-2" *ngIf="filtroResultado.length > 0">
-        <h1>Diaristas encontradas</h1>
+        <h1>Estas diaristas que são perfeitas para o que você precisa</h1>
         <span *ngFor="let diaristas of filtroResultado">
-        <p><strong>Nome:</strong> {{ diaristas.nome }}</p>
-        <p><strong>Endereço:</strong> {{ diaristas.endereco.endereco }} - {{ diaristas.endereco.numero }}</p>
-        <p><strong>Avaliação:</strong> <i *ngFor="let number of [1,2,3,4,5]" class="fa fa-star rating" aria-hidden="true"></i></p>        
-        <p><strong>Valor:</strong> R$ <span class="valorMinimoDiaria">{{ diaristas.valorMinimoDiaria }}</span> a R$ <span class="valorMaximoDiaria">{{ diaristas.valorMaximoDiaria }}</span></p>
+          <p><strong>Nome:</strong> {{ diaristas.nome }}</p>
+          <p><strong>Avaliação:</strong> <i *ngFor="let number of [1,2,3,4,5]" class="fa fa-star rating" aria-hidden="true"></i></p> 
         </span>
       </div>
     </div>

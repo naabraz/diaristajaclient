@@ -55,7 +55,7 @@ export class DiaristaCadastroComponent implements OnInit {
     this.diarista.endereco = new Endereco();
   }
 
-  saveDiarista(): void {
+  private saveDiarista(): void {
 
     this.success = false;
     this.error = false;

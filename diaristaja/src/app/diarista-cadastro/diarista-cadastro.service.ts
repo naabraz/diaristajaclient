@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions  } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Validator } from './../common/base/model/validator-model';
 import { Diarista } from './../common/base/model/diarista-model';
@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch'
 import 'rxjs/add/observable/throw';
 
-export type DiaristaRetrieveListType= { status: number, result: Diarista, resultList: Diarista[], validators: Validator[] };
+export type DiaristaRetrieveListType = { status: number, result: Diarista, resultList: Diarista[], validators: Validator[] };
 
 @Injectable()
 export class DiaristaService {
@@ -20,12 +20,12 @@ export class DiaristaService {
 
     constructor(private http: Http) { }
 
-    saveDiarista(diarista: Diarista): Observable<DiaristaRetrieveListType> {
-
+    public saveDiarista(diarista: Diarista): Observable<DiaristaRetrieveListType> {
+        console.log(diarista);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.post(this.appURL + "/diaristas" , diarista, options)
+        return this.http.post(this.appURL + "/diaristas", diarista, options)
             .map(this.extractData)
             .catch(this.handleErrorObservable);
     }

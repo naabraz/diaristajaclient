@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions  } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Validator } from './../common/base/model/validator-model';
 import { AppConfig } from './../common/app.config';
@@ -20,10 +20,10 @@ export class FiltroService {
 
   constructor(private http: Http) { }
 
-  searchFilter(filtroAvancado: FiltroAvancado): Observable<FiltroAvancadoRetrieveListType> {
+  public searchFilter(filtroAvancado: FiltroAvancado): Observable<FiltroAvancadoRetrieveListType> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    console.log(filtroAvancado);
+
     return this.http.post(this.appURL + "/diaristas/filtro/avancado", filtroAvancado, options)
       .map(this.extractData)
       .catch(this.handleErrorObservable);

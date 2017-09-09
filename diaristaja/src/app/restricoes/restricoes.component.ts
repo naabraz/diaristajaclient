@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Http } from "@angular/http";
 
 import { RestricaoService, RestricaoRetrieveListType } from './../restricoes/restricoes.service';
-import { Restricao } from "app/common/base/model/restricao-model";
-import { Http } from "@angular/http";
+import { Restricao } from 'app/common/base/model/restricao-model';
 
 @Component({
   selector: 'app-restricoes',
@@ -17,8 +17,8 @@ export class RestricoesComponent implements OnInit {
   public checked: false;
   public restricoesSelecionadas: Restricao[] = [];
 
-  @Output() messageEvent = new EventEmitter<Restricao[]>();
-
+  @Output() restricoesEvent = new EventEmitter<Restricao[]>();
+  
   constructor(private http: Http) { }
 
   ngOnInit() {
@@ -33,23 +33,22 @@ export class RestricoesComponent implements OnInit {
   }
 
   public saveUsername (restricao, index, event){
-
     if (event.target.checked) {
       this.restricoesSelecionadas.push(restricao)      
     } else {
       this.removeItem(restricao)    
     }
     
-    this.sendMessage();
+    this.sendRestricoes();
   }
 
-  sendMessage() {
-    this.messageEvent.emit(this.restricoesSelecionadas);
+ public sendRestricoes() {
+    this.restricoesEvent.emit(this.restricoesSelecionadas);
   }
 
   private removeItem(restricao: Restricao) {
     let index = this.restricoesSelecionadas.indexOf(restricao);
     this.restricoesSelecionadas.splice(index, 1);
-}
+  }
 
 }

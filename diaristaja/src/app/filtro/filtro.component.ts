@@ -23,23 +23,20 @@ import { FiltroService, FiltroAvancadoRetrieveListType } from "app/filtro/filtro
 })
 export class FiltroComponent implements OnInit {
 
+  public data: Date;
+  public metragem: number;
+  public endereco: string;
   public latitude: number;
   public longitude: number;
+  public raio: number = 5;
+  public valorMaximoDiaria: number;
+  public restricoesId: number[] = [];
 
-  data: Date;
-  metragem: number;
-  cep: number;
-  numero: number;
-  endereco: string;
-  valorMaximoDiaria: number;
-  raio: number = 5;
-  restricoesId: number[] = [];
-
-  filtroResultado: Diarista[];
-  filtroAvancado: FiltroAvancado = new FiltroAvancado();
-
-  restricoesSelecionadas: Restricao[];
-
+  public filtroResultado: Diarista[];
+  public filtroAvancado: FiltroAvancado = new FiltroAvancado();
+  
+  public restricoesSelecionadas: Restricao[];
+  
   public searchControl: FormControl;
 
   @ViewChild("search")
@@ -53,30 +50,16 @@ export class FiltroComponent implements OnInit {
 
   ngOnInit() {
     this.searchControl = new FormControl();
-    
     this.loadPlaces();
-
     this.filtroResultado = [];
   }
 
-  limpa(): void {
-    this.restricoesSelecionadas = [];
-    this.restricoesId = [];
-    this.latitude = null;
-    this.longitude = null;
-    this.valorMaximoDiaria = null;
-    this.filtroResultado = [];
-    this.receiveMessage(null);
-    //o limpa nao esta limpando o receivemessage
-  }
-
-  receiveMessage($event) {
+  public receiveRestricoes($event) {
     this.restricoesSelecionadas = $event;
     this.restricoesId = [];
-    console.log($event)
   }
 
-  busca(): void {
+  public busca(): void {
     if (this.restricoesSelecionadas != null || undefined) {
       for (let auxRestricoes = 0;  auxRestricoes < this.restricoesSelecionadas.length; auxRestricoes++) {
         if (!this.restricoesId.includes(this.restricoesSelecionadas[auxRestricoes].id)) {

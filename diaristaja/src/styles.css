@@ -249,6 +249,9 @@ footer {
     background: #fff;
 }
 
+.list-group-item {
+    padding: 10px 15px 50px;
+}
 
 /*MAPA*/
 agm-map, .sebm-google-map-container[_ngcontent-c3]{

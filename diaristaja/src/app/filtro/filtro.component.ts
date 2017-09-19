@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, ElementRef, ViewChild, Input, Output } from '@angular/core';
+import { Component, OnInit, NgZone, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormControl } from '@angular/forms';
 
@@ -23,6 +23,8 @@ import { FiltroService, FiltroAvancadoRetrieveListType } from "app/filtro/filtro
 })
 export class FiltroComponent implements OnInit {
 
+  public error: string;
+
   public data: Date;
   public metragem: number;
   public endereco: string;
@@ -34,6 +36,10 @@ export class FiltroComponent implements OnInit {
 
   public filtroResultado: Diarista[];
   public filtroAvancado: FiltroAvancado = new FiltroAvancado();
+
+  public filtroResultadoVazio: boolean;
+
+  public diaristaContratada: string;
   
   public restricoesSelecionadas: Restricao[];
   
@@ -60,6 +66,15 @@ export class FiltroComponent implements OnInit {
   }
 
   public busca(): void {
+
+    if (this.valorMaximoDiaria === null || this.valorMaximoDiaria === undefined || this.endereco == null) {
+      this.error = "Informe no mínimo o valor máximo que será pago e o endereço";
+      this.filtroResultadoVazio = false;
+      return;
+    } else {
+      this.error = "";
+    }
+
     if (this.restricoesSelecionadas != null || undefined) {
       for (let auxRestricoes = 0;  auxRestricoes < this.restricoesSelecionadas.length; auxRestricoes++) {
         if (!this.restricoesId.includes(this.restricoesSelecionadas[auxRestricoes].id)) {
@@ -76,9 +91,15 @@ export class FiltroComponent implements OnInit {
 
     let filtroAvancadoService = new FiltroService(this.http);
     
+    this.filtroResultadoVazio = true;
+  
     filtroAvancadoService.searchFilter(this.filtroAvancado).subscribe((data: FiltroAvancadoRetrieveListType) => { this.filtroResultado = <Diarista[]>data.resultList },
     error => console.log(error),
     () => console.log('FiltroAvancado-Master -> Search Complete ==> :1', this.filtroResultado));
+  }
+
+  private contratarDiarista(diarista){
+    this.diaristaContratada = diarista;
   }
 
   private loadPlaces() {

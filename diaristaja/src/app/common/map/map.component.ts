@@ -36,6 +36,7 @@ export class MapComponent implements OnInit {
   diaristas: IDiarista[];
   diaristasLocalizacao: IMap[] = [];
   diaristaDetalhe: IDiarista;
+  diaristaContratada: string;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -96,7 +97,9 @@ export class MapComponent implements OnInit {
     });
   }
 
- 
+  private contrataDiarista(diaristaNome) {
+    this.diaristaContratada = diaristaNome;
+  }
 
   private loadPlaces() {
     this.mapsAPILoader.load().then(() => {

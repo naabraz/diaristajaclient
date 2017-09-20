@@ -16,13 +16,15 @@ import { DiaristaDetalheModule } from './diarista-detalhe/diarista-detalhe.modul
 import { routing } from './app.routes';
 import { LoginComponent } from './login/login.component';
 import { RestricoesModule } from "app/restricoes/restricoes.module";
+import { InvestidorComponent } from './investidor/investidor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    InvestidorComponent
     ],
   imports: [
     BrowserModule,

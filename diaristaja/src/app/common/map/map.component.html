@@ -27,7 +27,24 @@
       </div>
     
       <div class="modal-footer">
-        <a class="btn btn-success">Quero contratar</a>
+        <a class="btn btn-success" data-toggle="modal" data-target="#contratadaModal" data-dismiss="modal" (click)="contrataDiarista(diaristaDetalhe.nome)">Quero contratar</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="contratadaModal" tabindex="-1" role="dialog" aria-labelledby="contratadaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="contratadaModalLabel">Obrigado!</h4>
+      </div>
+      <div class="modal-body" *ngIf="diaristaContratada">
+        Nós informaremos a {{diaristaContratada}}, que entrará em contato com você para combinar os detalhes da diária!
+      </div>
+    
+      <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
       </div>
     </div>

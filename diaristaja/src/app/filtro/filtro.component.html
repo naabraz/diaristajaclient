@@ -31,7 +31,9 @@
             <div class="col-md-12 m-t-20 m-b-20">
               <strong class="alert-info">O que precisará ser feito?</strong>
             </div>
-            <app-restricoes (restricoesEvent)="receiveRestricoes($event)"></app-restricoes>
+            
+              <app-restricoes (restricoesEvent)="receiveRestricoes($event)"></app-restricoes>
+
             <div class="col-md-12">
               Local da diária:
               <input id="endereco" class="form-control" [(ngModel)]="endereco" name="endereco" placeholder="Pesquise diaristas por endereço"

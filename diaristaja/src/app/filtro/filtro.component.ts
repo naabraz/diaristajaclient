@@ -70,6 +70,7 @@ export class FiltroComponent implements OnInit {
     if (this.valorMaximoDiaria === null || this.valorMaximoDiaria === undefined || this.endereco == null) {
       this.error = "Informe no mínimo o valor máximo que será pago e o endereço";
       this.filtroResultadoVazio = false;
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       return;
     } else {
       this.error = "";

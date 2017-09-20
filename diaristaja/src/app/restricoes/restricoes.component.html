@@ -1,8 +1,12 @@
-<div *ngFor="let restricao of restricoes; let i = index" [attr.data-index]="i" class="col-md-6 col-sm-12 col-xs-12 m-b-15">
-    <div class="material-switch pull-left">
-        <input [id]="'someSwitchOptionInfo'+i" [name]="'someSwitchOptionInfo'+i" type="checkbox" (click) = "saveUsername(restricao, i, $event)"
-        [checked]="restricao.selecionado"/>
-        <label [for]="'someSwitchOptionInfo'+i" class="label-info"></label>
+<div class="row">
+    <div class="col-md-12">
+        <div *ngFor="let restricao of restricoes; let i = index" [attr.data-index]="i" class="col-md-6 col-sm-12 col-xs-12 m-b-15">
+            <div class="material-switch pull-left">
+                <input [id]="'someSwitchOptionInfo'+i" [name]="'someSwitchOptionInfo'+i" type="checkbox" (click)="saveUsername(restricao, i, $event)"
+                    [checked]="restricao.selecionado" />
+                <label [for]="'someSwitchOptionInfo'+i" class="label-info"></label>
+            </div>
+            <span class="labelCheck">{{restricao.nome}}</span>
+        </div>
     </div>
-    <span class="labelCheck">{{restricao.nome}}</span>
 </div>

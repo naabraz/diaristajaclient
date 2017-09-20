@@ -7,13 +7,15 @@ import { FiltroResultadoComponent } from './filtro-resultado/filtro-resultado.co
 import { LoginComponent } from './login/login.component';
 import { DiaristaCadastroComponent } from './diarista-cadastro/diarista-cadastro.component';
 import { DiaristaDetalheComponent } from './diarista-detalhe/diarista-detalhe.component';
+import { InvestidorComponent } from './investidor/investidor.component';
 
 const APP_ROUTES: Routes = [
     { path: 'diarista/filtro', component: FiltroComponent },
     { path: 'diarista/filtro-resultado', component: FiltroResultadoComponent },
     { path: 'diarista/login', component: LoginComponent },
+    { path: 'diarista/investidor', component: InvestidorComponent },
     { path: 'diarista/cadastro', component: DiaristaCadastroComponent },
-    { path: 'diarista/detalhe/:id', component: DiaristaDetalheComponent },    
+    { path: 'diarista/detalhe/:id', component: DiaristaDetalheComponent },
     
     { path: 'diarista', component: HomeComponent }
 ];

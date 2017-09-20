@@ -97,7 +97,7 @@ export class MapComponent implements OnInit {
     });
   }
 
-  private contrataDiarista(diaristaNome) {
+  public contrataDiarista(diaristaNome) {
     this.diaristaContratada = diaristaNome;
   }
 

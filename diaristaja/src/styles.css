@@ -270,6 +270,10 @@ agm-map, .sebm-google-map-container[_ngcontent-c3]{
     }
 }
 @media(max-width:768px) {
+    .container .row{
+        margin-left: 0;
+        margin-right: 0;
+    }
     h1{
         font-size: 26px;
     }

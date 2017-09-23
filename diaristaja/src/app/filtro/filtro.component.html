@@ -3,28 +3,31 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
 
-        <div class="alert alert-danger" role="alert" *ngIf="error">
-          <span>{{error}}</span>
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage.length > 0">
+            <div *ngFor="let error of errorMessage">
+              <span>{{error}}</span>
+            </div>
         </div>
 
         <h1>Encontre uma diarista</h1>
         <p>Preencha os dados abaixo com as informações da diária:</p>
+        <p>Ei! Os campos com (*) são obrigatórios ta bom?</p>
 
         <form>
           <div class="form-horizontal row col-md-12 divFiltro">
 
             <div class="col-md-6">
-              Qual a data?
+              <label>Qual a data?</label>
               <input class="form-control" type="date" [(ngModel)]="data" name="data" placeholder="DD/MM/AAAA">
             </div>
 
             <div class="col-md-6">
-              Metragem do local:
+              <label>Metragem do local:</label>
               <input class="form-control" type="text" [(ngModel)]="metragem" name="metragem" placeholder="60 m2">
             </div>
 
             <div class="col-md-4">
-              Pago no máximo:
+              <label>Pago no máximo:*</label>
               <input class="form-control" type="number" [(ngModel)]="valorMaximoDiaria" name="valorMaximoDiaria">
             </div>
 
@@ -35,7 +38,7 @@
               <app-restricoes (restricoesEvent)="receiveRestricoes($event)"></app-restricoes>
 
             <div class="col-md-12">
-              Local da diária:
+              <label>Local da diária:*</label>
               <input id="endereco" class="form-control" [(ngModel)]="endereco" name="endereco" placeholder="Pesquise diaristas por endereço"
                 autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search [formControl]="searchControl">
             </div>

@@ -23,7 +23,7 @@ import { FiltroService, FiltroAvancadoRetrieveListType } from "app/filtro/filtro
 })
 export class FiltroComponent implements OnInit {
 
-  public error: string;
+  public errorMessage: string[] = [];
 
   public data: Date;
   public metragem: number;
@@ -66,14 +66,23 @@ export class FiltroComponent implements OnInit {
   }
 
   public busca(): void {
+    this.errorMessage = [];
 
-    if (this.valorMaximoDiaria === null || this.valorMaximoDiaria === undefined || this.endereco == null) {
-      this.error = "Informe no mínimo o valor máximo que será pago e o endereço";
+    if (this.valorMaximoDiaria === null || this.valorMaximoDiaria === undefined) {
+      this.errorMessage.push("Informe o valor máximo que será pago");
+    }
+    if (this.endereco == null) {
+      this.errorMessage.push("Informe o endereço da diária");
+    }
+    
+    if (this.errorMessage.length > 0 ) {
+      console.log(this.errorMessage);
       this.filtroResultadoVazio = false;
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       return;
-    } else {
-      this.error = "";
+    }
+     else {
+      this.errorMessage = [];
     }
 
     if (this.restricoesSelecionadas != null || undefined) {

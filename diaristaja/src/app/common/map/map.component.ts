@@ -116,7 +116,7 @@ export class MapComponent implements OnInit {
             return;
           }
           
-          let filtroLocalizacao = new FiltroLocalizacao(place.geometry.location.lat().toString(), place.geometry.location.lng().toString(), 5);
+          let filtroLocalizacao = new FiltroLocalizacao(place.geometry.location.lat().toString(), place.geometry.location.lng().toString(), null);
           this.searchDiaristasByLocalization(filtroLocalizacao);
         });
       });
@@ -151,11 +151,11 @@ export class MapComponent implements OnInit {
             if (response.status === 1) {
 
               this.diaristas = response.resultList;
+              this.zoom = 17;
 
                 if(this.diaristas.length == 0){
                   this.latitude = Number(filtroLocalizacao.latitude);
                   this.longitude = Number(filtroLocalizacao.longitude);
-                  this.zoom = 16;
                 }else{
                   this.populaMapa();
                 }

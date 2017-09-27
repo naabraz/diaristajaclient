@@ -122,6 +122,10 @@ export class FiltroComponent implements OnInit {
     } else {
       this.filtroResultadoEncontrado = false;
       this.filtroResultadoVazio = true;
+
+      setTimeout(function() {
+        document.body.scrollTop = document.documentElement.scrollTop = 990;
+      }, 1000);
     }
   }
 

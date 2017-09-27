@@ -1,14 +1,14 @@
 export class Endereco {
     id: number;
-    uuid: String;
-    endereco: String;
-    referencia: String;
+    uuid: string;
+    endereco: string;
+    referencia: string;
     numero: string;
-    cidade: String;
-    estado: String;
-    cep: String;
-    latitude: Number;
-    longitude: Number;
+    cidade: string;
+    estado: string;
+    cep: string;
+    latitude: number;
+    longitude: number;
 
-     constructor(){}
+     constructor() {}
 }

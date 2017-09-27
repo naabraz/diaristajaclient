@@ -1,9 +1,9 @@
 export class FiltroLocalizacao {
-    latitude: String;
-    longitude: String;
-    raio: Number
+    latitude: string;
+    longitude: string;
+    raio: number;
 
-     constructor(lat: String, long: String, raio: Number){
+     constructor(lat: string, long: string, raio: number) {
          this.latitude = lat;
          this.longitude = long;
          this.raio = raio;

@@ -10,11 +10,10 @@ import { FooterComponent } from './common/footer/footer.component';
 import { HomeModule } from './home/home.module';
 import { FiltroModule } from './filtro/filtro.module';
 import { DiaristaCadastroModule } from './diarista-cadastro/diarista-cadastro.modules';
-import { DiaristaDetalheModule } from './diarista-detalhe/diarista-detalhe.module';
 
 import { routing } from './app.routes';
 import { LoginComponent } from './login/login.component';
-import { RestricoesModule } from "app/restricoes/restricoes.module";
+import { RestricoesModule } from 'app/restricoes/restricoes.module';
 import { InvestidorComponent } from './investidor/investidor.component';
 
 @NgModule({
@@ -32,7 +31,6 @@ import { InvestidorComponent } from './investidor/investidor.component';
     HomeModule,
     FiltroModule,
     DiaristaCadastroModule,
-    DiaristaDetalheModule,
     RestricoesModule,
     routing
   ],

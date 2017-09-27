@@ -20,7 +20,7 @@ import { AgmCoreModule } from '@agm/core';
     routing,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDCXlLtvgOpi8GcIxH8Q1puCiUv2BVljfM',
-      libraries: ["places"]
+      libraries: ['places']
     })
   ],
   providers: [],

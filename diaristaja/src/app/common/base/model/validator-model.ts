@@ -1,3 +1,3 @@
 export class Validator{
-    message: String;
+    message: string;
 }

@@ -6,8 +6,8 @@ export interface IDiarista {
     email: string;
     ddd1: number;
     numero1: number;
-    ddd2: number,
-    numero2: number,
+    ddd2: number;
+    numero2: number;
     endereco: IEndereco;
     nome: string;
     sobreNome: string;

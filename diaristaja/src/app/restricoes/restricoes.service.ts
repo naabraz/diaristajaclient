@@ -9,7 +9,7 @@ import { AppConfig } from './../common/app.config';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch'
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 export type RestricaoRetrieveListType= { status: number, result: Restricao, resultList: Restricao[], validators: Validator[] };
@@ -22,7 +22,7 @@ export class RestricaoService {
 
     public getRestricoes(): Observable<RestricaoRetrieveListType> {
 
-            return this.http.get(this.appURL + "/restricoes")
+            return this.http.get(this.appURL + '/restricoes')
             .map((response: Response) => <RestricaoRetrieveListType>response.json());
     }
 

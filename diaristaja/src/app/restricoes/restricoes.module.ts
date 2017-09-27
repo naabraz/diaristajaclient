@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AgmCoreModule } from '@agm/core';
-import { RestricoesComponent } from "app/restricoes/restricoes.component";
+import { RestricoesComponent } from 'app/restricoes/restricoes.component';
 
 @NgModule({
   declarations: [

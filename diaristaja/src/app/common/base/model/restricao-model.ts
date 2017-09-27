@@ -1,7 +1,6 @@
-
 export class Restricao {
     id: number;
-    nome: String;
+    nome: string;
 
-    constructor(){}
+    constructor() {}
 }

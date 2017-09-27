@@ -9,7 +9,7 @@ import { AppConfig } from './../common/app.config';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch'
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 export type DiaristaRetrieveListType = { status: number, result: Diarista, resultList: Diarista[], validators: Validator[] };
@@ -22,16 +22,16 @@ export class DiaristaService {
 
     public saveDiarista(diarista: Diarista): Observable<DiaristaRetrieveListType> {
         console.log(diarista);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
 
-        return this.http.post(this.appURL + "/diaristas", diarista, options)
+        return this.http.post(this.appURL + '/diaristas', diarista, options)
             .map(this.extractData)
             .catch(this.handleErrorObservable);
     }
 
     private extractData(res: Response) {
-        let body = res.json();
+        const body = res.json();
 
         return body;
     }

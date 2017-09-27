@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Http } from "@angular/http";
+import { Http } from '@angular/http';
 
 import { RestricaoService, RestricaoRetrieveListType } from './../restricoes/restricoes.service';
 import { Restricao } from 'app/common/base/model/restricao-model';
@@ -9,8 +9,8 @@ import { Restricao } from 'app/common/base/model/restricao-model';
   templateUrl: './restricoes.component.html',
   styleUrls: ['./restricoes.component.css'],
   providers: [RestricaoService]
-  
 })
+
 export class RestricoesComponent implements OnInit {
 
   public restricoes: Restricao[];
@@ -18,7 +18,7 @@ export class RestricoesComponent implements OnInit {
   public restricoesSelecionadas: Restricao[] = [];
 
   @Output() restricoesEvent = new EventEmitter<Restricao[]>();
-  
+
   constructor(private http: Http) { }
 
   ngOnInit() {
@@ -26,19 +26,22 @@ export class RestricoesComponent implements OnInit {
   }
 
   public getListgetRestricoes() {
-    let restricaoService = new RestricaoService(this.http);
-    restricaoService.getRestricoes().subscribe((data: RestricaoRetrieveListType) => { this.restricoes = <Restricao[]>data.resultList },
-      error => console.log(error),
-      () => console.log('Restricoes-Master -> Get Restricoes Complete ==> :1', this.restricoes));
+    const restricaoService = new RestricaoService(this.http);
+
+    restricaoService.getRestricoes().subscribe((data: RestricaoRetrieveListType) => {
+      this.restricoes = <Restricao[]> data.resultList;
+    },
+    error => console.log(error),
+    () => console.log('Restricoes-Master -> Get Restricoes Complete ==> :1', this.restricoes));
   }
 
-  public saveUsername (restricao, index, event){
+  public saveUsername (restricao, index, event) {
     if (event.target.checked) {
-      this.restricoesSelecionadas.push(restricao)      
+      this.restricoesSelecionadas.push(restricao);
     } else {
-      this.removeItem(restricao)    
+      this.removeItem(restricao);
     }
-    
+
     this.sendRestricoes();
   }
 
@@ -47,7 +50,7 @@ export class RestricoesComponent implements OnInit {
   }
 
   private removeItem(restricao: Restricao) {
-    let index = this.restricoesSelecionadas.indexOf(restricao);
+    const index = this.restricoesSelecionadas.indexOf(restricao);
     this.restricoesSelecionadas.splice(index, 1);
   }
 

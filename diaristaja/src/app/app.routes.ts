@@ -1,11 +1,10 @@
-import { ModuleWithProviders } from "@angular/core";
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { FiltroComponent } from './filtro/filtro.component';
 import { LoginComponent } from './login/login.component';
 import { DiaristaCadastroComponent } from './diarista-cadastro/diarista-cadastro.component';
-import { DiaristaDetalheComponent } from './diarista-detalhe/diarista-detalhe.component';
 import { InvestidorComponent } from './investidor/investidor.component';
 
 const APP_ROUTES: Routes = [
@@ -13,8 +12,6 @@ const APP_ROUTES: Routes = [
     { path: 'diarista/login', component: LoginComponent },
     { path: 'diarista/investidor', component: InvestidorComponent },
     { path: 'diarista/cadastro', component: DiaristaCadastroComponent },
-    { path: 'diarista/detalhe/:id', component: DiaristaDetalheComponent },
-    
     { path: 'diarista', component: HomeComponent }
 ];
 

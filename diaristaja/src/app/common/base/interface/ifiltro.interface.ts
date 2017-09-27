@@ -1,6 +1,6 @@
 export interface IFiltro {
     data: Date;
-    metragem: number,
-    cep: number,
-    endereco: string
+    metragem: number;
+    cep: number;
+    endereco: string;
 }

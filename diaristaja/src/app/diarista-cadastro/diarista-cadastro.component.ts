@@ -14,7 +14,7 @@ import { MapComponent } from './../common/map/map.component';
 import { RestricoesComponent } from 'app/restricoes/restricoes.component';
 
 @Component({
-  selector: 'diarista-cadastro',
+  selector: 'app-diarista-cadastro',
   templateUrl: './diarista-cadastro.component.html',
   styleUrls: ['./diarista-cadastro.component.css'],
   providers: [DiaristaService]
@@ -30,7 +30,7 @@ export class DiaristaCadastroComponent implements OnInit {
   public success: Boolean;
   public error: Boolean;
 
-  @ViewChild("search")
+  @ViewChild('search')
   public searchElementRef: ElementRef;
 
   @ViewChild(RestricoesComponent) restricao;
@@ -56,7 +56,6 @@ export class DiaristaCadastroComponent implements OnInit {
   }
 
   private saveDiarista(): void {
-
     this.success = false;
     this.error = false;
 
@@ -70,33 +69,32 @@ export class DiaristaCadastroComponent implements OnInit {
       response => {
         if (response.status === 1) {
           this.success = true;
-          this.messageResponseSuccess.push("Diarista cadastrada com sucesso");
+          this.messageResponseSuccess.push('Diarista cadastrada com sucesso');
         } else {
           this.validate(response.validators);
         }
       },
       error => console.log(error)
       );
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
 
-    // Redirecionar para pagina de login
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
 
   private validate(validators) {
     this.error = true;
-    for (var i = 0; i < validators.length; i++) {
+    for (let i = 0; i < validators.length; i++) {
       this.messageResponseError.push(validators[i].message);
     }
   }
 
   private loadPlaces() {
     this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"],
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['address'],
       });
-      autocomplete.addListener("place_changed", () => {
+      autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
           if (place.geometry === undefined || place.geometry === null) {
             return;

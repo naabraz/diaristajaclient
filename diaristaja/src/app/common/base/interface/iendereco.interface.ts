@@ -1,11 +1,11 @@
 export interface IEndereco {
     id: number;
-    uuid: String;
-    endereco: String;
-    referencia: String;
+    uuid: string;
+    endereco: string;
+    referencia: string;
     numero: number;
-    cidade: String;
-    estado: String;
+    cidade: string;
+    estado: string;
     cep: number;
     latitude: number;
     longitude: number;

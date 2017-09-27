@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Http } from '@angular/http';
-import { FormControl } from "@angular/forms";
+import { FormControl } from '@angular/forms';
 
 import { MapsAPILoader } from '@agm/core';
 
@@ -16,7 +16,7 @@ import { FiltroLocalizacao } from './../base/model/filtro-localizacao-model';
 import { } from '@types/googlemaps';
 
 @Component({
-  selector: 'map',
+  selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
@@ -38,7 +38,7 @@ export class MapComponent implements OnInit {
   diaristaDetalhe: IDiarista;
   diaristaContratada: string;
 
-  @ViewChild("search")
+  @ViewChild('search')
   public searchElementRef: ElementRef;
 
   constructor(
@@ -65,13 +65,17 @@ export class MapComponent implements OnInit {
   }
 
   private getListaDiaristas() {
-    let mapService = new MapService(this.http);
-    mapService.getDiaristas().subscribe((data: DiaristaRetrieveListType) => { this.diaristas = <IDiarista[]>data.resultList, this.populaMapa() },
+
+    const mapService = new MapService(this.http);
+
+    mapService.getDiaristas().subscribe((data: DiaristaRetrieveListType) => {
+        this.diaristas = <IDiarista[]> data.resultList; this.populaMapa();
+      },
       error => console.log(error),
       () => console.log('Diaristas-Master -> Get Diaristas Complete ==> :1', this.diaristas));
   }
 
-  private openModal(paramDiarista){
+  private openModal(paramDiarista) {
     this.diaristaDetalhe = paramDiarista;
   }
 
@@ -79,20 +83,20 @@ export class MapComponent implements OnInit {
     this.diaristasLocalizacao = [];
     for (let idxDiarista = 0; idxDiarista < this.diaristas.length; idxDiarista++) {
       this.diaristasLocalizacao.push({
-        "id": this.diaristas[idxDiarista].id,
-        "nome": this.diaristas[idxDiarista].nome,
-        "latitude": Number(this.diaristas[idxDiarista].endereco.latitude),
-        "longitude": Number(this.diaristas[idxDiarista].endereco.longitude),
-        "valorMaximoDiaria": this.diaristas[idxDiarista].valorMaximoDiaria,
-        "valorMinimoDiaria": this.diaristas[idxDiarista].valorMinimoDiaria,
-        "endereco": this.diaristas[idxDiarista].endereco
+        'id': this.diaristas[idxDiarista].id,
+        'nome': this.diaristas[idxDiarista].nome,
+        'latitude': Number(this.diaristas[idxDiarista].endereco.latitude),
+        'longitude': Number(this.diaristas[idxDiarista].endereco.longitude),
+        'valorMaximoDiaria': this.diaristas[idxDiarista].valorMaximoDiaria,
+        'valorMinimoDiaria': this.diaristas[idxDiarista].valorMinimoDiaria,
+        'endereco': this.diaristas[idxDiarista].endereco
       });
     }
 
     this.mapsAPILoader.load().then(() => {
       this.latlngBounds = new window['google'].maps.LatLngBounds();
       this.diaristasLocalizacao.forEach((location) => {
-        this.latlngBounds.extend(new window['google'].maps.LatLng(location.latitude, location.longitude))
+        this.latlngBounds.extend(new window['google'].maps.LatLng(location.latitude, location.longitude));
       });
     });
   }
@@ -103,20 +107,25 @@ export class MapComponent implements OnInit {
 
   private loadPlaces() {
     this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['address']
       });
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
-          //verify result
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+
+          // get the place result
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          // verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
 
-          let filtroLocalizacao = new FiltroLocalizacao(place.geometry.location.lat().toString(), place.geometry.location.lng().toString(), null);
+          const filtroLocalizacao = new FiltroLocalizacao (
+              place.geometry.location.lat().toString(),
+              place.geometry.location.lng().toString(), null);
+
           this.searchDiaristasByLocalization(filtroLocalizacao);
         });
       });
@@ -124,7 +133,7 @@ export class MapComponent implements OnInit {
   }
 
   private setCurrentPosition() {
-    if ("geolocation" in navigator) {
+    if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
@@ -143,7 +152,7 @@ export class MapComponent implements OnInit {
     this.messageResponseError = [];
     this.diaristas = [];
 
-    let mapService = new MapService(this.http);
+    const mapService = new MapService(this.http);
 
     mapService.getDiaristasByLocalization(filtroLocalizacao)
       .subscribe(
@@ -153,10 +162,10 @@ export class MapComponent implements OnInit {
           this.diaristas = response.resultList;
           this.zoom = 17;
 
-          if(this.diaristas.length == 0){
+          if (this.diaristas.length === 0) {
             this.latitude = Number(filtroLocalizacao.latitude);
             this.longitude = Number(filtroLocalizacao.longitude);
-          }else{
+          } else {
             this.populaMapa();
           }
 
@@ -170,7 +179,7 @@ export class MapComponent implements OnInit {
 
   private validate(validators) {
     this.error = true;
-    for (var i = 0; i < validators.length; i++) {
+    for (let i = 0; i < validators.length; i++) {
       this.messageResponseError.push(validators[i].message);
     }
   }

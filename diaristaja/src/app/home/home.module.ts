@@ -20,4 +20,5 @@ import { HomeComponent } from './home.component';
   bootstrap: [],
   exports: [HomeComponent]
 })
+
 export class HomeModule { }

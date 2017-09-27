@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule } from '@agm/core';
 
 import { DiaristaCadastroComponent } from './diarista-cadastro.component';
-import { RestricoesModule } from "app/restricoes/restricoes.module";
+import { RestricoesModule } from 'app/restricoes/restricoes.module';
 
 @NgModule({
   declarations: [
@@ -23,4 +23,4 @@ import { RestricoesModule } from "app/restricoes/restricoes.module";
   bootstrap: [],
   exports: [DiaristaCadastroComponent]
 })
-export class DiaristaCadastroModule { }
+export class DiaristaCadastroModule { };

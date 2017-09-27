@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MatSliderModule } from '@angular/material';
+
 import { AgmCoreModule } from '@agm/core';
 import { RestricoesModule } from './../restricoes/restricoes.module';
 
@@ -17,7 +19,8 @@ import { FiltroComponent } from './filtro.component';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    RestricoesModule
+    RestricoesModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [],

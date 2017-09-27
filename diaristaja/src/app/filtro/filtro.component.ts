@@ -14,6 +14,9 @@ import { Restricao } from './../common/base/model/restricao-model';
 import { FiltroAvancado } from './../common/base/model/filtro-avancado-model';
 
 import { FiltroService, FiltroAvancadoRetrieveListType } from "app/filtro/filtro.service";
+import { MatSliderModule } from '@angular/material';
+
+import 'hammerjs';
 
 @Component({
   selector: 'filtro',
@@ -36,8 +39,8 @@ export class FiltroComponent implements OnInit {
 
   public filtroResultado: Diarista[];
   public filtroAvancado: FiltroAvancado = new FiltroAvancado();
-
-  public filtroResultadoVazio: boolean;
+  public filtroResultadoVazio: boolean = false;
+  public filtroResultadoEncontrado: boolean = false;
 
   public diaristaContratada: string;
   
@@ -76,7 +79,6 @@ export class FiltroComponent implements OnInit {
     }
     
     if (this.errorMessage.length > 0 ) {
-      console.log(this.errorMessage);
       this.filtroResultadoVazio = false;
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       return;
@@ -101,11 +103,23 @@ export class FiltroComponent implements OnInit {
 
     let filtroAvancadoService = new FiltroService(this.http);
     
-    this.filtroResultadoVazio = true;
-  
-    filtroAvancadoService.searchFilter(this.filtroAvancado).subscribe((data: FiltroAvancadoRetrieveListType) => { this.filtroResultado = <Diarista[]>data.resultList },
+    filtroAvancadoService.searchFilter(this.filtroAvancado).subscribe((data: FiltroAvancadoRetrieveListType) => { 
+        this.filtroResultado = <Diarista[]>data.resultList, 
+        this.showResult(this.filtroResultado) },
     error => console.log(error),
     () => console.log('FiltroAvancado-Master -> Search Complete ==> :1', this.filtroResultado));
+  }
+
+  private showResult(filtroResultado : Diarista[]) {
+    if (filtroResultado.length > 0) {
+      this.filtroResultadoEncontrado = true;
+      this.filtroResultadoVazio = false;
+      let element = document.getElementById("filtroResultadoEncontrado");
+      element.scrollIntoView();
+    } else {
+      this.filtroResultadoEncontrado = false;
+      this.filtroResultadoVazio = true;
+    }
   }
 
   private contratarDiarista(diarista){

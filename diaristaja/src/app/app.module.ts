@@ -9,7 +9,6 @@ import { FooterComponent } from './common/footer/footer.component';
 
 import { HomeModule } from './home/home.module';
 import { FiltroModule } from './filtro/filtro.module';
-import { FiltroResultadoModule } from './filtro-resultado/filtro-resultado.module';
 import { DiaristaCadastroModule } from './diarista-cadastro/diarista-cadastro.modules';
 import { DiaristaDetalheModule } from './diarista-detalhe/diarista-detalhe.module';
 
@@ -32,7 +31,6 @@ import { InvestidorComponent } from './investidor/investidor.component';
     HttpModule,
     HomeModule,
     FiltroModule,
-    FiltroResultadoModule,
     DiaristaCadastroModule,
     DiaristaDetalheModule,
     RestricoesModule,

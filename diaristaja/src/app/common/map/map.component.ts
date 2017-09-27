@@ -27,7 +27,7 @@ export class MapComponent implements OnInit {
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
-  public latlngBounds;  
+  public latlngBounds;
   public success: Boolean;
   public error: Boolean;
   public messageResponseSuccess: String[];
@@ -51,7 +51,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.getListaDiaristas();
 
-    // this.setMapConfig();
+    this.setMapConfig();
 
     this.searchControl = new FormControl();
 
@@ -59,7 +59,7 @@ export class MapComponent implements OnInit {
   }
 
   private setMapConfig() {
-    this.zoom = 8;
+    this.zoom = 12;
     this.latitude = -23.528170;
     this.longitude = -46.699886;
   }
@@ -92,7 +92,7 @@ export class MapComponent implements OnInit {
     this.mapsAPILoader.load().then(() => {
       this.latlngBounds = new window['google'].maps.LatLngBounds();
       this.diaristasLocalizacao.forEach((location) => {
-          this.latlngBounds.extend(new window['google'].maps.LatLng(location.latitude, location.longitude))
+        this.latlngBounds.extend(new window['google'].maps.LatLng(location.latitude, location.longitude))
       });
     });
   }
@@ -115,14 +115,14 @@ export class MapComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-          
+
           let filtroLocalizacao = new FiltroLocalizacao(place.geometry.location.lat().toString(), place.geometry.location.lng().toString(), null);
           this.searchDiaristasByLocalization(filtroLocalizacao);
         });
       });
     });
   }
-  
+
   private setCurrentPosition() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -136,43 +136,43 @@ export class MapComponent implements OnInit {
   }
 
   private searchDiaristasByLocalization(filtroLocalizacao: FiltroLocalizacao): void {
-    
-        this.success = false;
-        this.error = false;
-        this.messageResponseSuccess = [];
-        this.messageResponseError = [];
-        this.diaristas = [];
 
-        let mapService = new MapService(this.http);
-    
-        mapService.getDiaristasByLocalization(filtroLocalizacao)
-          .subscribe(
-          response => {
-            if (response.status === 1) {
+    this.success = false;
+    this.error = false;
+    this.messageResponseSuccess = [];
+    this.messageResponseError = [];
+    this.diaristas = [];
 
-              this.diaristas = response.resultList;
-              this.zoom = 17;
+    let mapService = new MapService(this.http);
 
-                if(this.diaristas.length == 0){
-                  this.latitude = Number(filtroLocalizacao.latitude);
-                  this.longitude = Number(filtroLocalizacao.longitude);
-                }else{
-                  this.populaMapa();
-                }
+    mapService.getDiaristasByLocalization(filtroLocalizacao)
+      .subscribe(
+      response => {
+        if (response.status === 1) {
 
-            } else {
-              this.validate(response.validators);
-            }
-          },
-          error => console.log(error)
-          );
+          this.diaristas = response.resultList;
+          this.zoom = 17;
+
+          if(this.diaristas.length == 0){
+            this.latitude = Number(filtroLocalizacao.latitude);
+            this.longitude = Number(filtroLocalizacao.longitude);
+          }else{
+            this.populaMapa();
           }
 
-      private validate(validators) {
-        this.error = true;
-        for (var i = 0; i < validators.length; i++) {
-          this.messageResponseError.push(validators[i].message);
+        } else {
+          this.validate(response.validators);
         }
-      }
+      },
+      error => console.log(error)
+      );
+  }
+
+  private validate(validators) {
+    this.error = true;
+    for (var i = 0; i < validators.length; i++) {
+      this.messageResponseError.push(validators[i].message);
+    }
+  }
 
 }

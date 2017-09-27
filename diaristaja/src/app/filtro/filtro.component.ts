@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormControl } from '@angular/forms';
+import { MatSliderModule } from '@angular/material';
 
 import { MapsAPILoader } from '@agm/core';
 
@@ -14,7 +15,6 @@ import { Restricao } from './../common/base/model/restricao-model';
 import { FiltroAvancado } from './../common/base/model/filtro-avancado-model';
 
 import { FiltroService, FiltroAvancadoRetrieveListType } from "app/filtro/filtro.service";
-import { MatSliderModule } from '@angular/material';
 
 import 'hammerjs';
 
@@ -33,7 +33,7 @@ export class FiltroComponent implements OnInit {
   public endereco: string;
   public latitude: number;
   public longitude: number;
-  public raio: number = 5;
+  public raio: number = 3;
   public valorMaximoDiaria: number;
   public restricoesId: number[] = [];
 
@@ -114,12 +114,19 @@ export class FiltroComponent implements OnInit {
     if (filtroResultado.length > 0) {
       this.filtroResultadoEncontrado = true;
       this.filtroResultadoVazio = false;
-      let element = document.getElementById("filtroResultadoEncontrado");
-      element.scrollIntoView();
+
+      setTimeout(function() {
+        document.body.scrollTop = document.documentElement.scrollTop = 990;
+      }, 1000);
+
     } else {
       this.filtroResultadoEncontrado = false;
       this.filtroResultadoVazio = true;
     }
+  }
+
+  private buscarNovamente() {
+    document.body.scrollTop = document.documentElement.scrollTop = 250;
   }
 
   private contratarDiarista(diarista){

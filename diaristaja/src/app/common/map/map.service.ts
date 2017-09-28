@@ -10,7 +10,7 @@ import { Diarista } from './../base/model/diarista-model';
 import { FiltroLocalizacao } from './../base/model/filtro-localizacao-model';
 import { Validator } from './../base/model/validator-model';
 
-export type DiaristaRetrieveListType = { status: number, result: string, resultList: IDiarista[], validators: Validator[] };
+export interface DiaristaRetrieveListType { status: number; result: string; resultList: IDiarista[]; validators: Validator[]; };
 
 @Injectable()
 export class MapService {

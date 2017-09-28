@@ -29,13 +29,13 @@ export class RestricoesComponent implements OnInit {
     const restricaoService = new RestricaoService(this.http);
 
     restricaoService.getRestricoes().subscribe((data: RestricaoRetrieveListType) => {
-      this.restricoes = <Restricao[]> data.resultList;
+      this.restricoes = <Restricao[]>data.resultList;
     },
-    error => console.log(error),
-    () => console.log('Restricoes-Master -> Get Restricoes Complete ==> :1', this.restricoes));
+      error => console.log(error),
+      () => console.log('Restricoes-Master -> Get Restricoes Complete ==> :1', this.restricoes));
   }
 
-  public saveUsername (restricao, index, event) {
+  public saveUsername(restricao, index, event) {
     if (event.target.checked) {
       this.restricoesSelecionadas.push(restricao);
     } else {
@@ -45,7 +45,7 @@ export class RestricoesComponent implements OnInit {
     this.sendRestricoes();
   }
 
- public sendRestricoes() {
+  public sendRestricoes() {
     this.restricoesEvent.emit(this.restricoesSelecionadas);
   }
 

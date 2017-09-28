@@ -12,32 +12,31 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-export type DiaristaRetrieveListType = { status: number, result: Diarista, resultList: Diarista[], validators: Validator[] };
+export interface DiaristaRetrieveListType { status: number; result: Diarista; resultList: Diarista[]; validators: Validator[]; };
 
 @Injectable()
 export class DiaristaService {
-    private appURL = AppConfig.APP_URL;
+  private appURL = AppConfig.APP_URL;
 
-    constructor(private http: Http) { }
+  constructor(private http: Http) { }
 
-    public saveDiarista(diarista: Diarista): Observable<DiaristaRetrieveListType> {
-        console.log(diarista);
-        const headers = new Headers({ 'Content-Type': 'application/json' });
-        const options = new RequestOptions({ headers: headers });
+  public saveDiarista(diarista: Diarista): Observable<DiaristaRetrieveListType> {
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
 
-        return this.http.post(this.appURL + '/diaristas', diarista, options)
-            .map(this.extractData)
-            .catch(this.handleErrorObservable);
-    }
+    return this.http.post(this.appURL + '/diaristas', diarista, options)
+      .map(this.extractData)
+      .catch(this.handleErrorObservable);
+  }
 
-    private extractData(res: Response) {
-        const body = res.json();
+  private extractData(res: Response) {
+    const body = res.json();
 
-        return body;
-    }
-    private handleErrorObservable(error: Response | any) {
-        console.error('ERROR ' + error.message || error);
-        return Observable.throw(error.message || error);
-    }
+    return body;
+  }
+  private handleErrorObservable(error: Response | any) {
+    console.error('ERROR ' + error.message || error);
+    return Observable.throw(error.message || error);
+  }
 
 }

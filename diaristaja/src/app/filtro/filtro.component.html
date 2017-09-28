@@ -4,9 +4,9 @@
       <div class="col-md-8 col-md-offset-2">
 
         <div class="alert alert-danger" role="alert" *ngIf="errorMessage.length > 0">
-            <div *ngFor="let error of errorMessage">
-              <span>{{error}}</span>
-            </div>
+          <div *ngFor="let error of errorMessage">
+            <span>{{error}}</span>
+          </div>
         </div>
 
         <h1>Encontre uma diarista</h1>
@@ -34,13 +34,13 @@
             <div class="col-md-12 m-t-20 m-b-20">
               <strong class="alert-info">O que precisará ser feito?</strong>
             </div>
-            
-              <app-restricoes (restricoesEvent)="receiveRestricoes($event)"></app-restricoes>
+
+            <app-restricoes (restricoesEvent)="receiveRestricoes($event)"></app-restricoes>
 
             <div class="col-md-12">
               <label>Local da diária:*</label>
-              <input id="endereco" class="form-control" [(ngModel)]="endereco" name="endereco" placeholder="Qual o local da diária?"
-                autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search [formControl]="searchControl">
+              <input id="endereco" class="form-control" [(ngModel)]="endereco" name="endereco" placeholder="Qual o local da diária?" autocorrect="off"
+                autocapitalize="off" spellcheck="off" type="text" #search [formControl]="searchControl">
             </div>
 
             <div class="col-md-12">
@@ -50,7 +50,7 @@
                 <md-slider [thumb-label]="true" min="1" max="5" step="1" id="raio" type="number" [(ngModel)]="raio" name="raio"></md-slider>
               </span>
             </div>
-            
+
             <div class="col-md-12">
               <a class="btn btn-success btn-lg col-md-6 pull-right btnLogin" (click)="busca()">Avançar</a>
             </div>
@@ -62,21 +62,21 @@
   </div>
 
   <div class="row">
-      <div class="row">
-        <div id="buscavazia" class="col-md-8 col-md-offset-2" [hidden]="!filtroResultadoVazio">
-          <h1>Desculpe!</h1>
-          <p>Infelizmente não encontramos nenhum resultado correspondente à sua pesquisa :(</p>
-          <p><a class="btn btn-primary col-md-3 pull-right" (click)="buscarNovamente()">Buscar novamente</a></p>
-        </div>
+    <div class="row">
+      <div id="buscavazia" class="col-md-8 col-md-offset-2" [hidden]="!filtroResultadoVazio">
+        <h1>Desculpe!</h1>
+        <p>Infelizmente não encontramos nenhum resultado correspondente à sua pesquisa :(</p>
+        <p><a class="btn btn-primary col-md-3 pull-right" (click)="buscarNovamente()">Buscar novamente</a></p>
       </div>
+    </div>
   </div>
 
   <div class="row" id="filtroResultadoEncontrado">
     <div class="row">
       <div class="col-md-8 col-md-offset-2" [hidden]="!filtroResultadoEncontrado">
-          <h1>Encontramos os seguintes resultados:</h1>
-          <div class="list-group">
-            <span *ngFor="let diaristas of filtroResultado">
+        <h1>Encontramos os seguintes resultados:</h1>
+        <div class="list-group">
+          <span *ngFor="let diaristas of filtroResultado">
               <div class="list-group-item">
                 <p><strong>Nome:</strong> {{ diaristas.nome }}</p>
                 <p><strong>Avaliação:</strong> <i *ngFor="let number of [1,2,3,4,5]" class="fa fa-star rating" aria-hidden="true"></i></p>
@@ -84,8 +84,8 @@
                 <p><a class="btn btn-primary col-md-3" data-toggle="modal" data-target="#exampleModal" (click)="contratarDiarista(diaristas.nome)">Contratar</a></p>
               </div><br />
             </span>
-            <p><a class="btn btn-primary col-md-3 pull-right" (click)="buscarNovamente()">Buscar novamente</a></p>
-          </div>
+          <p><a class="btn btn-primary col-md-3 pull-right" (click)="buscarNovamente()">Buscar novamente</a></p>
+        </div>
       </div>
     </div>
   </div>
@@ -98,9 +98,10 @@
         <h4 class="modal-title" id="exampleModalLabel">Obrigado!</h4>
       </div>
       <div class="modal-body" *ngIf="diaristaContratada">
-        Nós informaremos a {{diaristaContratada}}, que avaliará a proposta e entrará em contato com você para combinar os detalhes da diária!
+        Nós informaremos a {{diaristaContratada}}, que avaliará a proposta e entrará em contato com você para combinar os detalhes
+        da diária!
       </div>
-    
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
       </div>

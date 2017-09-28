@@ -23,7 +23,7 @@ import { InvestidorComponent } from './investidor/investidor.component';
     FooterComponent,
     LoginComponent,
     InvestidorComponent
-    ],
+  ],
   imports: [
     BrowserModule,
     FormsModule,

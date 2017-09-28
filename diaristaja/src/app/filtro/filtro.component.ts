@@ -78,7 +78,7 @@ export class FiltroComponent implements OnInit {
       this.errorMessage.push('Informe o endereço da diária');
     }
 
-    if (this.errorMessage.length > 0 ) {
+    if (this.errorMessage.length > 0) {
       this.filtroResultadoVazio = false;
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       return;
@@ -87,7 +87,7 @@ export class FiltroComponent implements OnInit {
     }
 
     if (this.restricoesSelecionadas != null || undefined) {
-      for (let auxRestricoes = 0;  auxRestricoes < this.restricoesSelecionadas.length; auxRestricoes++) {
+      for (let auxRestricoes = 0; auxRestricoes < this.restricoesSelecionadas.length; auxRestricoes++) {
         if (!this.restricoesId.includes(this.restricoesSelecionadas[auxRestricoes].id)) {
           this.restricoesId.push(this.restricoesSelecionadas[auxRestricoes].id);
         }
@@ -103,11 +103,11 @@ export class FiltroComponent implements OnInit {
     const filtroAvancadoService = new FiltroService(this.http);
 
     filtroAvancadoService.searchFilter(this.filtroAvancado).subscribe((data: FiltroAvancadoRetrieveListType) => {
-        this.filtroResultado = <Diarista[]>data.resultList;
-        this.showResult(this.filtroResultado);
-      },
-    error => console.log(error),
-    () => console.log('FiltroAvancado-Master -> Search Complete ==> :1', this.filtroResultado));
+      this.filtroResultado = <Diarista[]>data.resultList;
+      this.showResult(this.filtroResultado);
+    },
+      error => console.log(error),
+      () => console.log('FiltroAvancado-Master -> Search Complete ==> :1', this.filtroResultado));
   }
 
   private showResult(filtroResultado: Diarista[]) {
@@ -115,7 +115,7 @@ export class FiltroComponent implements OnInit {
       this.filtroResultadoEncontrado = true;
       this.filtroResultadoVazio = false;
 
-      setTimeout(function() {
+      setTimeout(function () {
         document.body.scrollTop = document.documentElement.scrollTop = 990;
       }, 1000);
 
@@ -123,14 +123,14 @@ export class FiltroComponent implements OnInit {
       this.filtroResultadoEncontrado = false;
       this.filtroResultadoVazio = true;
 
-      setTimeout(function() {
+      setTimeout(function () {
         document.body.scrollTop = document.documentElement.scrollTop = 990;
       }, 1000);
     }
   }
 
   private buscarNovamente() {
-    document.body.scrollTop = document.documentElement.scrollTop = 250;
+    document.body.scrollTop = document.documentElement.scrollTop = 100;
   }
 
   private contratarDiarista(diarista) {

@@ -8,11 +8,11 @@ import { DiaristaCadastroComponent } from './diarista-cadastro/diarista-cadastro
 import { InvestidorComponent } from './investidor/investidor.component';
 
 const APP_ROUTES: Routes = [
-    { path: 'diarista/filtro', component: FiltroComponent },
-    { path: 'diarista/login', component: LoginComponent },
-    { path: 'diarista/investidor', component: InvestidorComponent },
-    { path: 'diarista/cadastro', component: DiaristaCadastroComponent },
-    { path: 'diarista', component: HomeComponent }
+  { path: 'diarista/filtro', component: FiltroComponent },
+  { path: 'diarista/login', component: LoginComponent },
+  { path: 'diarista/investidor', component: InvestidorComponent },
+  { path: 'diarista/cadastro', component: DiaristaCadastroComponent },
+  { path: 'diarista', component: HomeComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

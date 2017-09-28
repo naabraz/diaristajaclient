@@ -12,7 +12,6 @@ import { IDiarista } from './../base/interface/idiarista.interface';
 import { IMap } from './../../common/base/interface/imap.interface';
 import { FiltroLocalizacao } from './../base/model/filtro-localizacao-model';
 
-
 import { } from '@types/googlemaps';
 
 @Component({
@@ -69,8 +68,8 @@ export class MapComponent implements OnInit {
     const mapService = new MapService(this.http);
 
     mapService.getDiaristas().subscribe((data: DiaristaRetrieveListType) => {
-        this.diaristas = <IDiarista[]> data.resultList; this.populaMapa();
-      },
+      this.diaristas = <IDiarista[]>data.resultList; this.populaMapa();
+    },
       error => console.log(error),
       () => console.log('Diaristas-Master -> Get Diaristas Complete ==> :1', this.diaristas));
   }
@@ -113,18 +112,15 @@ export class MapComponent implements OnInit {
 
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
-
-          // get the place result
           const place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
-          // verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
 
-          const filtroLocalizacao = new FiltroLocalizacao (
-              place.geometry.location.lat().toString(),
-              place.geometry.location.lng().toString(), null);
+          const filtroLocalizacao = new FiltroLocalizacao(
+            place.geometry.location.lat().toString(),
+            place.geometry.location.lng().toString(), null);
 
           this.searchDiaristasByLocalization(filtroLocalizacao);
         });
@@ -145,7 +141,6 @@ export class MapComponent implements OnInit {
   }
 
   private searchDiaristasByLocalization(filtroLocalizacao: FiltroLocalizacao): void {
-
     this.success = false;
     this.error = false;
     this.messageResponseSuccess = [];

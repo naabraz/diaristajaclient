@@ -129,7 +129,7 @@ export class FiltroComponent implements OnInit {
     }
   }
 
-  private buscarNovamente() {
+  buscarNovamente() {
     document.body.scrollTop = document.documentElement.scrollTop = 100;
   }
 
